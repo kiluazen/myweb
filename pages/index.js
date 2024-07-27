@@ -38,6 +38,10 @@ export default function Home() {
                 <a href="essays" class="underline text-[#9B9692] hover:font-bold hover:text-[#DA95DE]">Essays</a>
               </div>
             </div>
+
+            <a href="/products" class="underline text-[#9B9692] font-bold hover:italic hover:text-[#DA95DE]">
+              My Products
+            </a>
           </div>
         </div>
 
