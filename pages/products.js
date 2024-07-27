@@ -1,164 +1,142 @@
 import React, { useState, useEffect } from 'react';
-import { commerce } from '../lib/commerce';
 import { ShoppingCart } from 'lucide-react';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
+import Image from 'next/image';
 
-function ProductList() {
-  const [products, setProducts] = useState([]);
-  const [localCart, setLocalCart] = useState({});
-  const router = useRouter();
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
+const products = [
+  { id: 1, name: 'Product 1', price: 19.99, image: '/products/calabi-yau.webp' },
+  { id: 2, name: 'Product 2', price: 29.99, image: '/products/helix_2.jpeg' },
+  { id: 3, name: 'Product 3', price: 39.99, image: '/products/hyperbloid_1.jpg' },
+];
+
+export default function ProductList() {
+  const [cartItems, setCartItems] = useState({});
+  const [addedItems, setAddedItems] = useState({});
 
   useEffect(() => {
-    fetchProducts();
+    // Load Snipcart script
+    const script = document.createElement('script');
+    script.src = 'https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Initialize Snipcart
+    const initSnipcart = () => {
+      if (window.Snipcart) {
+        window.Snipcart.events.on('cart:ready', (state) => {
+          updateCartState(state);
+        });
+        window.Snipcart.events.on('cart:updated', (state) => {
+          updateCartState(state);
+        });
+      }
+    };
+
+    script.onload = initSnipcart;
+
+    // Reset addedItems when component mounts (i.e., when returning to the page)
+    setAddedItems({});
+
+    return () => {
+      // Clean up
+      document.body.removeChild(script);
+    };
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const { data } = await commerce.products.list();
-      setProducts(data);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
-
-  const addToCart = (productId) => {
-    setLocalCart(prev => ({
-      ...prev,
-      [productId]: (prev[productId] || 0) + 1
-    }));
-  };
-
-  const removeFromCart = (productId) => {
-    setLocalCart(prev => {
-      const newCart = { ...prev };
-      if (newCart[productId] > 1) {
-        newCart[productId]--;
-      } else {
-        delete newCart[productId];
-      }
-      return newCart;
+  const updateCartState = (state) => {
+    const newCartItems = {};
+    state.items.forEach((item) => {
+      newCartItems[item.id] = item.quantity;
     });
+    setCartItems(newCartItems);
+    
+    // Update addedItems based on cart contents
+    const newAddedItems = {};
+    Object.keys(newCartItems).forEach((id) => {
+      newAddedItems[id] = true;
+    });
+    setAddedItems(newAddedItems);
   };
 
-  const handleCheckout = async () => {
-    setIsCheckingOut(true);
-    try {
-      // Create a new cart in Commerce.js
-      const cart = await commerce.cart.refresh();
-
-      // Add items from local cart to Commerce.js cart one by one
-      for (const [productId, quantity] of Object.entries(localCart)) {
-        const response = await commerce.cart.add(productId, quantity);
-        console.log(`Added product ${productId} to cart:`, response);
-      }
-
-      // Retrieve the updated cart
-      const updatedCart = await commerce.cart.retrieve();
-      console.log('Retrieved cart:', updatedCart);
-      
-      if (updatedCart.hosted_checkout_url) {
-        router.push(updatedCart.hosted_checkout_url);
-      } else {
-        console.error('Hosted checkout URL not available');
-      }
-    } catch (error) {
-      console.error('Error during checkout:', error);
-      if (error.data) {
-        console.error('Error details:', error.data);
-      }
-    } finally {
-      setIsCheckingOut(false);
-    }
+  const getTotalItemsCount = () => {
+    return Object.values(cartItems).reduce((sum, quantity) => sum + quantity, 0);
   };
 
-  const handleShoppingCart = async () => {
-    setIsCheckingOut(true);
-    try {
-      // Create a new cart in Commerce.js
-      const cart = await commerce.cart.refresh();
-
-      // Add items from local cart to Commerce.js cart
-      for (const [productId, quantity] of Object.entries(localCart)) {
-        await commerce.cart.add(productId, quantity);
+  const toggleCartItem = (product) => {
+    if (addedItems[product.id]) {
+      // Remove from cart
+      if (window.Snipcart) {
+        window.Snipcart.api.cart.items.remove(product.id)
+          .then(() => {
+            console.log('Item removed from cart');
+            setAddedItems(prev => ({ ...prev, [product.id]: false }));
+          })
+          .catch((error) => {
+            console.error('Error removing item from cart:', error);
+          });
       }
-
-      // Navigate to the checkout page
-      router.push('/checkout');
-    } catch (error) {
-      console.error('Error updating cart:', error);
-    } finally {
-      setIsCheckingOut(false);
+    } else {
+      // Add to cart
+      if (window.Snipcart) {
+        window.Snipcart.api.cart.items.add({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          url: '/products',
+          image: product.image
+        }).then(() => {
+          console.log('Item added to cart');
+          setAddedItems(prev => ({ ...prev, [product.id]: true }));
+        }).catch((error) => {
+          console.error('Error adding item to cart:', error);
+        });
+      }
     }
-  }
+  };
 
   return (
     <div className="container mx-auto px-4">
+      <Head>
+        <title>Our Products</title>
+        <link rel="preconnect" href="https://app.snipcart.com" />
+        <link rel="preconnect" href="https://cdn.snipcart.com" />
+        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.css" />
+      </Head>
+
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Our Products</h1>
-        <div className="relative">
-          <button onClick={() => handleShoppingCart()}>
-            <ShoppingCart className="h-6 w-6" />
-            {Object.keys(localCart).length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs">
-                {Object.values(localCart).reduce((total, quantity) => total + quantity, 0)}
-              </span>
-            )}
-          </button>
-        </div>
+        <button className="snipcart-checkout flex items-center">
+          <ShoppingCart className="h-6 w-6 mr-2" />
+          <span className="snipcart-items-count">{getTotalItemsCount()}</span>
+        </button>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product.id} className="border rounded-lg p-4 shadow-md">
-            {product.image && (
-              <img src={product.image.url} alt={product.name} className="w-full h-48 object-cover mb-4" />
-            )}
+            <Image src={product.image} alt={product.name} width={300} height={200} className="w-full h-48 object-cover mb-4" />
             <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-            <p className="text-gray-600 mb-4">{product.price.formatted_with_symbol}</p>
+            <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
             <button
-              onClick={() => addToCart(product.id)}
-              className={`px-4 py-2 rounded ${
-                localCart[product.id] ? 'bg-green-500 text-white' : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
+              className={`w-full px-4 py-2 rounded ${
+                addedItems[product.id] 
+                  ? 'bg-green-500 hover:bg-green-600' 
+                  : 'bg-blue-500 hover:bg-blue-600'
+              } text-white transition-colors duration-300`}
+              onClick={() => toggleCartItem(product)}
             >
-              {localCart[product.id] ? 'Added' : 'Add to Cart'}
+              {addedItems[product.id] ? 'Added' : 'Add to Cart'}
             </button>
-            {localCart[product.id] && (
-              <>
-                <button
-                  onClick={() => removeFromCart(product.id)}
-                  className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 ml-2"
-                >
-                  -
-                </button>
-                <span className="mx-2">{localCart[product.id]}</span>
-                <button
-                  onClick={() => addToCart(product.id)}
-                  className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-                >
-                  +
-                </button>
-              </>
-            )}
           </div>
         ))}
       </div>
-      <button
-        onClick={handleCheckout}
-        disabled={isCheckingOut}
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center mt-8"
-      >
-        {isCheckingOut ? (
-          <>
-            <span className="mr-2">Processing</span>
-            <span className="animate-pulse">...</span>
-          </>
-        ) : (
-          'Proceed to Checkout'
-        )}
-      </button>
+
+      <div 
+        hidden 
+        id="snipcart" 
+        data-api-key="ZjcyNjc2OTUtNmFlMi00YzAyLTkzYzktN2MyODliOTIxY2NhNjM4NTc2ODIyMjUwNzc2MjMx"
+        data-config-add-product-behavior="none"
+      ></div>
     </div>
   );
 }
-
-export default ProductList;
