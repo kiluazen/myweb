@@ -72,19 +72,39 @@ function ProductList() {
     }
   };
 
+  const handleShoppingCart = async () => {
+    setIsCheckingOut(true);
+    try {
+      // Create a new cart in Commerce.js
+      const cart = await commerce.cart.refresh();
+
+      // Add items from local cart to Commerce.js cart
+      for (const [productId, quantity] of Object.entries(localCart)) {
+        await commerce.cart.add(productId, quantity);
+      }
+
+      // Navigate to the checkout page
+      router.push('/checkout');
+    } catch (error) {
+      console.error('Error updating cart:', error);
+    } finally {
+      setIsCheckingOut(false);
+    }
+  }
+
   return (
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Our Products</h1>
         <div className="relative">
-          <a href="/checkout">
+          <button onClick={() => handleShoppingCart()}>
             <ShoppingCart className="h-6 w-6" />
             {Object.keys(localCart).length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs">
                 {Object.values(localCart).reduce((total, quantity) => total + quantity, 0)}
               </span>
             )}
-          </a>
+          </button>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
