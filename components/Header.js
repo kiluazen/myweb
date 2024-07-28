@@ -5,10 +5,10 @@ export default function Header() {
   <div className="flex justify-end pr-6 md:pr-0 md:justify-center md:items-center">
   <div className="flex flex-row md:pl-0 pt-6">
     <div className="flex flex-row gap-6 lg:gap-[3rem] text-[1.2rem]">
-      <a className="hover:text-[#DA95DE] hover:font-bold"  href='/'>Home</a>
-      <a className="hover:text-[#DA95DE] hover:font-bold" href='/about'>About</a>
-      <a className="hover:text-[#DA95DE] hover:font-bold" href='/blog'>Blog</a>
-      <a className="hover:text-[#DA95DE] hover:font-bold" href='/resume.pdf' id = 'resume-clickeed'>Resume</a>
+      <a className="hover:text-[#DA95DE] font-medium"  href='/'>Home</a>
+      <a className="hover:text-[#DA95DE] font-medium" href='/about'>About</a>
+      <a className="hover:text-[#DA95DE] font-medium" href='/blog'>Blog</a>
+      <a className="hover:text-[#DA95DE] font-medium" href='/resume.pdf' id = 'resume-clickeed'>Resume</a>
     </div>
   </div>
   </div>

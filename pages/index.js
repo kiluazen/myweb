@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div className="min-h-[90vh]">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Contemplation</title>
+        <link rel="icon" href="/contemplation.ico" />
       </Head>
 
       <div>
