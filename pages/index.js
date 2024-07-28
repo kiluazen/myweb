@@ -1,13 +1,8 @@
-import Head from 'next/head';
 import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className="min-h-[90vh]">
-      <Head>
-        <title>Contemplation</title>
-        <link rel="icon" href="/contemplation.ico" />
-      </Head>
 
       <div>
         <div className="flex flex-col pt-[3rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">

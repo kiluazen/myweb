@@ -134,7 +134,7 @@ export default function ProductList() {
       <div 
         hidden 
         id="snipcart" 
-        data-api-key="ZjcyNjc2OTUtNmFlMi00YzAyLTkzYzktN2MyODliOTIxY2NhNjM4NTc2ODIyMjUwNzc2MjMx"
+        data-api-key={process.env.PUBLIC_SNIPCART_API_KEY}
         data-config-add-product-behavior="none"
       ></div>
     </div>
