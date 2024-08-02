@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.416.0",
+    "marked": "^13.0.3",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"

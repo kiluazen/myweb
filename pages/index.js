@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="min-h-[90vh]">
+    <div className="min-h-[70vh] lg:min-[90vh]">
 
       <div>
-        <div className="flex flex-col pt-[3rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
+        <div className="flex flex-col pt-[4rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
           <div className="flex-1 flex flex-row justify-around items-center w-[400px] md:w-auto md:min-w-[300px]">
             <Image src="/playground_pic.png" alt="Contemplation" width={400} height={400} className="rounded-[18px]"/>
           </div>
