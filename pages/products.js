@@ -21,7 +21,7 @@ const Products = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="px-4 md:px-[1rem] md:lg:px-[4rem] lg:px-[15rem]">
+    <div className="px-4 md:px-[1rem] md:lg:px-[2rem] lg:px-[6rem] xl:px-[12rem]">
       <div className='pb-4'>
         <h2 className='text-2xl font-bold'>Products</h2>
         <p className="pb-2">
