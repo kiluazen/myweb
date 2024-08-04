@@ -5,9 +5,9 @@ export default function Home() {
     <div className="min-h-[70vh] lg:min-[90vh]">
 
       <div>
-        <div className="flex flex-col pt-[4rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
+        <div className="flex flex-col pt-[2rem] md:pt-[4rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
           <div className="flex-1 flex flex-row justify-around items-center w-[400px] md:w-auto md:min-w-[300px]">
-            <Image src="/playground_pic.png" alt="Contemplation" width={400} height={400} className="rounded-[18px]"/>
+            <Image src="/playground_pic.png" alt="Contemplation" width={500} height={500} className="rounded-[18px]"/>
           </div>
           <div className="flex-1 items-start flex flex-col gap-2 md:gap-4 pl-4 md:pl-0 py-2 md:pt-0">
             <div className="flex flex-col gap-1 md:gap-4 text-[1rem] md:text-[1.2rem]">
