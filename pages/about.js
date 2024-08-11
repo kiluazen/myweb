@@ -2,11 +2,11 @@ function about() {
 
     return (
         <div>
-            <div className="flex flex-col py-[3rem] md:gap-[2rem] md:px-[4rem] md:pt-[4rem] md:lg:px-[4rem] lg:px-[6rem] xl:px-[10rem] 2xl:px-[18rem] lg:pt-[6rem]">
+            <div className="flex flex-col py-[1rem] md:gap-[2rem] md:px-[4rem] md:pt-[4rem] md:lg:px-[4rem] lg:px-[6rem] xl:px-[10rem] 2xl:px-[18rem] lg:pt-[6rem]">
         <div className="flex flex-col md:lg:flex-row-reverse justify-center items-center gap-4 md:gap-[4rem]">
-        <div className="flex flex-row justify-center items-center">
-            <img className="rounded-[18px] max-w-[400px] min-w-[300px]" src="/about/color-2.jpg" alt="My Picture"/>
-         </div>
+          <div className="flex flex-row justify-center items-center">
+              <img className="rounded-[18px] max-w-[400px] min-w-[300px]" src="/about/color-2.jpg" alt="My Picture"/>
+          </div>
         <div className="flex flex-col gap-[1rem] text-[1.2rem] pl-4 pr-8 md:pl-0 md:pr-0">
         <p>Aerospace Grad from IIT Bombay 24. Currently In Banglore
         </p>

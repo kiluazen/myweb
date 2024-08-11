@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-[70vh] lg:min-[90vh]">
 
       <div>
-        <div className="flex flex-col pt-[2rem] md:pt-[4rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
+        <div className="flex flex-col pt-[1rem] md:pt-[4rem] md:lg:flex-row md:px-[6rem] md:pb-[2rem] gap-[2rem] xl:px-[10rem] xl:py-[8rem] items-center">
           <div className="flex-1 flex flex-row justify-around items-center w-[400px] md:w-auto md:min-w-[300px]">
             <Image src="/playground_pic.png" alt="Contemplation" width={500} height={500} className="rounded-[18px]"/>
           </div>
