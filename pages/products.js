@@ -1,20 +1,40 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const Products = () => {
   const products = [
-    { name: "Interlocking Cone", images: ["cone/cone_kushal.jpeg", "cone/cone_hand.jpeg", "cone/cone_rain.jpeg"] },
+    { 
+      name: "Interlocking Cone", 
+      images: ["cone/cone_hand.jpeg", "cone/cone_rain.jpeg"],
+      video: "cone/cone_demo_540p.mp4",
+      thumbnail: "cone/cone_kushal.jpeg" // Add this line
+    },
     { name: "Interlocking Heart", images: ["heart/heart_open.jpeg", "heart/heart_closed.jpeg", "heart/heart_open.jpeg"] },
     { name: "Calabi-Yau Manifold", images: ["calabi/calabi-yau.webp", "calabi/yellow.jpeg", "calabi/yellow_hole.jpeg"] },
   ];
 
   const [activeIndices, setActiveIndices] = useState(products.map(() => 0));
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [playingVideos, setPlayingVideos] = useState({});
+  const videoRefs = useRef({});
 
   const handleScroll = (event, productIndex) => {
     const scrollPosition = event.target.scrollLeft;
     const imageWidth = event.target.children[0].offsetWidth;
     const newIndex = Math.round(scrollPosition / imageWidth);
     setActiveIndices(prev => prev.map((index, i) => i === productIndex ? newIndex : index));
+  };
+
+  const toggleVideo = (productIndex) => {
+    const video = videoRefs.current[productIndex];
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setPlayingVideos(prev => ({ ...prev, [productIndex]: true }));
+      } else {
+        video.pause();
+        setPlayingVideos(prev => ({ ...prev, [productIndex]: false }));
+      }
+    }
   };
 
   const openModal = () => setIsModalOpen(true);
@@ -45,6 +65,28 @@ const Products = () => {
             className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-4 pb-4 lg:pb-0 scrollbar-hide"
             onScroll={(e) => handleScroll(e, productIndex)}
           >
+            {product.video && (
+              <div className="w-full min-w-[300px] h-[250px] flex-shrink-0 overflow-hidden rounded-lg snap-center relative">
+                <video 
+                  ref={el => videoRefs.current[productIndex] = el}
+                  src={`/products/${product.video}`}
+                  className="w-full h-full object-cover"
+                  controls={playingVideos[productIndex]}
+                  poster={`/products/${product.thumbnail}`}
+                >
+                  Your browser does not support the video tag.
+                </video>
+                {!playingVideos[productIndex] && (
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 cursor-pointer"
+                    onClick={() => toggleVideo(productIndex)}
+                  >
+            
+                    <img src='play.png' className="w-15 h-12"/>
+                  </div>
+                )}
+              </div>
+            )}
             {product.images.map((img, imgIndex) => (
               <div key={imgIndex} className="w-full min-w-[300px] h-[250px] flex-shrink-0 overflow-hidden rounded-lg snap-center">
                 <img
