@@ -17,21 +17,21 @@ export default function Home() {
               <p>Also, I am making myself cold email people I admire, This web would be a nice intro for that. As Brian Chesky said it, <br/>"To build Trust, you have to remove strange from the stranger"</p>
             </div>
             <div className="flex flex-row gap-4">
-              <a href="mailto:kushalsokke@gmail.com?subject=Coffee!" className="underline text-[#9B9692] font-bold hover:italic hover:text-[#DA95DE]">Email</a>
-              <a href="https://twitter.com/KushalSM5" className="underline text-[#9B9692] font-bold hover:italic hover:text-[#DA95DE]">Twitter</a>
-              <a href="https://github.com/kiluazen" className="underline text-[#9B9692] font-bold hover:italic hover:text-[#DA95DE]">Github</a>
+              <a href="mailto:kushalsokke@gmail.com?subject=Coffee!" className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]">Email</a>
+              <a href="https://twitter.com/KushalSM5" className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]">Twitter</a>
+              <a href="https://github.com/kiluazen" className="underline text-[#9B9692] font-bold  hover:text-[#DA95DE]">Github</a>
             </div>
             <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <div>
                 <span>Curated Lists :</span>
               </div>
               <div className="flex flex-row gap-4">
-                <a href="/books" className="underline text-[#9B9692] hover:font-bold hover:text-[#DA95DE]">Reading List</a>
-                <a href="/podcasts" className="underline text-[#9B9692] hover:font-bold hover:text-[#DA95DE]">Podcasts</a>
-                <a href="essays" className="underline text-[#9B9692] hover:font-bold hover:text-[#DA95DE]">Essays</a>
+                <a href="/books" className="underline text-[#9B9692] hover:text-[#DA95DE]">Reading List</a>
+                <a href="/podcasts" className="underline text-[#9B9692] hover:text-[#DA95DE]">Podcasts</a>
+                <a href="essays" className="underline text-[#9B9692] hover:text-[#DA95DE]">Essays</a>
               </div>
             </div>
-            <a href="/products" className="underline text-[#9B9692] font-bold hover:italic hover:text-[#DA95DE]">
+            <a href="/products" className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]">
               My Products
             </a>
           </div>

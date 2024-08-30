@@ -34,10 +34,10 @@ export default function Header() {
     {/* <div className="flex flex-row md:pl-0 pt-8 pb-12"> */}
       <div className="flex flex-row px-2 gap-4 lg:gap-[3rem] text-[1.2rem]">
         <a className="hidden md:flex hover:text-[#DA95DE] font-medium"  href='/'>Home</a>
-        <a className="hover:text-flex [#DA95DE] font-medium" href='/about'>About</a>
+        <a className="hover:text-flex hover:text-[#DA95DE] font-medium" href='/about'>About</a>
         <a className="hover:text-[#DA95DE] font-medium" href='/writing'>Writing</a>
         <a className="hover:text-[#DA95DE] font-medium" href='/products'>Products</a>
-        <a className="hover:text-[#DA95DE] font-medium" href='/resume.pdf' id='resume-clicked' onClick={handleResumeClick}>Resume</a>
+        <a className="hover:text-[#DA95DE] font-medium" href='/kushal_iitb.pdf' id='resume-clicked' onClick={handleResumeClick}>Resume</a>
       </div>
     {/* </div> */}
   </div>

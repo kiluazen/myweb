@@ -9,15 +9,15 @@ export default function BlogIndex({ posts }) {
   return (
     // <BaseLayout title="Blog" description="Latest articles." current="blog">
     <div>
-      <div className="flex flex-col pt-[6rem] pl-4 gap-4 lg:px-[21rem]">
-        <h1 className="text-[#525051] font-[Sora] text-[1.8rem] md:text-[2.5rem] not-italic font-bold leading-[120%]">Blog</h1>
-        <div className="flex flex-col gap-[2rem]">
+      <div className="flex flex-col pt-[4rem] pl-4 gap-4 lg:px-[21rem]">
+        <h1 className="text-[#525051] font-[Sora] text-[1.8rem] pb-4 md:text-[2.5rem] not-italic font-bold leading-[120%]">Blog</h1>
+        <div className="flex flex-col gap-[1rem]">
           {posts.map((post, index) => (
             <div key={post.slug}>
               {index !== 0 && <hr className="border-[#DA95DE] py-2"/>}
               <div className="flex flex-col gap-2 pr-10 md:pr-0">
                 <h2 className="text-[#525051] font-[Sora] text-[1.5rem] not-italic font-bold leading-[120%]">
-                  <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  <a href={`/writing/${post.slug}`}>{post.title}</a>
                 </h2>
                 <p className="text-[#525051] text-[1.2rem] font-bold]">{post.description}</p>
                 <div className="text-[#525051] font-[Sora] non-italic font-bold">

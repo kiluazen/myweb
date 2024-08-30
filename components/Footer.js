@@ -5,9 +5,9 @@ return(<footer>
       &copy; {new Date().getFullYear()} Kushal. <br/>
     </span>
     <div className="flex flex-row gap-4">
-      <a href ='/books' className="text-[#DA95DE] hover:font-bold">Reading List</a> 
-      <a href ='/podcasts' className="text-[#DA95DE] hover:font-bold">Podcasts</a>
-      <a href ='/essays' className="text-[#DA95DE] hover:font-bold">Essays</a>
+      <a href ='/books' className="text-[#DA95DE] hover:text-[#845EC2] font-medium">Reading List</a> 
+      <a href ='/podcasts' className="text-[#DA95DE] hover:text-[#845EC2] font-medium">Podcasts</a>
+      <a href ='/essays' className="text-[#DA95DE] hover:text-[#845EC2] font-medium">Essays</a>
     </div>
   </div>
 </footer>
