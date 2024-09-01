@@ -11,5 +11,5 @@ That is a really sad statement to put out. In my work days if I want to have suc
 
 Ideally my blog life should be I read and consume a lot about a lot in the week, and I do the 6-hr non stop thing like Hamilton thing with coffee on Saturday.Edit it on Sunday and publish, That seems ideal to me.
 
-I read Leopold Aschenbrenner blogs which I will continue reading. He is an amazing guy. One of the reason he was communicating effectively on the pod is because he wrote a 150 page thesis explaining on how he thinks the future will play out, that is a lot of compute and he merely was repeating many of things he has written there.
+I read [Leopold Aschenbrenner](https://forourposterity.com/) blogs which I will continue reading. He is an amazing guy. One of the reason he was communicating effectively on the pod is because he wrote a 150 page thesis explaining on how he thinks the future will play out, that is a lot of compute and he merely was repeating many of things he has written there.
 So it’s a good assumption to make if someone is such an effective communicator of their ideas like Peter Theil, it’s probably because they write and allow themselves to think in full sentences 
