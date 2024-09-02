@@ -1,5 +1,5 @@
 ---
-title: Thinking out Loud :- My next project idea
+title: Thinking out Loud :- A project idea
 publishDate: 2 Sep 2024
 description:
 ---
@@ -11,7 +11,7 @@ Inspiration for this idea: ([Anthropic Paper](https://www.anthropic.com/news/map
 
 So Why should one care about this paper 🍄,
 They’ve identified specific features—or patterns—that correspond to particular behaviors, like being overly agreeable or sycophantic. By tweaking the model’s weights, they can control how much or how little the model exhibits these behaviors. Essentially, they’ve found the “knobs” to turn certain behaviors up or down.
-![Section from Anthropic Blog](/public/anthropic_blog.png)
+![Section from Anthropic Blog](/anthropic_blog.png)
 
 After reading their paper. I went to the llm providers, chatgpt claude.ai and others. I asked for dark offensive racist jokes, and they replied they can't do that.
 
