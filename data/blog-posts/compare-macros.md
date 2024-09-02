@@ -1,10 +1,11 @@
 ---
 title: Comparing Macros
 publishDate: 31 Aug 2024
-description: 
+description:
 ---
+
 It started when i was looking to find a replacement for banana. I was doing a cut at the time.
-I wanted a more fiborous fruit with lower calories. 
+I wanted a more fiborous fruit with lower calories.
 
 I went through healthifyme typing apple, orange , kiwi. And then wait what was the fibre for apple again etc.
 

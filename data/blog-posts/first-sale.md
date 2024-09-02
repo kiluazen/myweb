@@ -1,9 +1,10 @@
 ---
 title: My First Sale
 publishDate: 31 Aug 2024
-description: 
+description:
 ---
-I saw this toy on [Twitter](https://x.com/Rainmaker1973/status/1806233611823182161) - it's an interlocking cone. I loved the way it was moving and thought I'd buy it. 
+
+I saw this toy on [Twitter](https://x.com/Rainmaker1973/status/1806233611823182161) - it's an interlocking cone. I loved the way it was moving and thought I'd buy it.
 
 Then I thought, why not make it myself? I had zero experience in building a CAD model or 3D printing. But I decided to give it a shot.
 
@@ -14,6 +15,7 @@ I submitted a design to an online 3D printing service. That first attempt utterl
 Something cool happened. I went to a hackerhouse, and this guy named Aadhi loved it so much he bought it from me on the spot. You can check out what I've made at https://kushalsm.com/products
 
 Since then, I've designed three other toys and sell them on my website for anyone interested.
+
 - Interlcoking Heart
 - Calabi-Yau Manifold
 - Ruleaux Tetrahedron
