@@ -19,15 +19,13 @@ export default function Home() {
               <h1 className="text-[#525051] font-[Sora] text-[1.8rem] md:text-[2.5rem] not-italic font-bold leading-[120%]">
                 I'm Kushal
               </h1>
-              <p>Here I showcase my Work, thoughts, interests to the world.</p>
+              <p>I showcase my work, thoughts, and interests here to connect with awesome people across the internet</p>
+              
               <p>
-                Please Reach out. I wanna connect with awesome humans across the
-                internet
+                My latest endavour was to deisgn and 3d print fascinating geometric objects. I call it gateway to contemplation <a className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]" href="/products">GtC</a>
               </p>
               <p>
-                Also, I am making myself cold email people I admire, This web
-                would be a nice intro for that. As Brian Chesky said it, <br />
-                "To build Trust, you have to remove strange from the stranger"
+                I'd love to hear from you, let me know what you think.
               </p>
             </div>
             <div className="flex flex-row gap-4">
@@ -75,12 +73,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <a
-              href="/products"
-              className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]"
-            >
-              My Products
-            </a>
+
           </div>
         </div>
       </div>

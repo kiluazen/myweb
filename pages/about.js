@@ -11,7 +11,7 @@ function about() {
             />
           </div>
           <div className="flex flex-col gap-[1rem] text-[1.2rem] pl-4 pr-8 md:pl-0 md:pr-0">
-            <p>Aerospace Grad from IIT Bombay 24. Currently In Banglore</p>
+            <p>Graduated Aerospace Engineer from IIT Bombay 24. Currently In Banglore</p>
             <h1 className="text-[#525051] font-[Sora] text-[1.5rem] not-italic font-bold leading-[120%]">
               Interests
             </h1>
@@ -23,12 +23,6 @@ function about() {
             <p>
               I love reading Biographies, Instances where a small group of great
               people do incredible things.(Bell Labs, Xerox, Ycomb)
-            </p>
-            <p>
-              I am a deep learning practitioner along with my Aerospace Course
-              work. If you wanna know why I decided to work on software AI
-              instead of moving forward in Aerospace{" "}
-              <a href="/blog/swtich-to-software">read..</a>
             </p>
             <div className="flex flex-col xl:flex-row gap-2">
               <p>Some curated lists, I revist every year: </p>
@@ -58,13 +52,11 @@ function about() {
         <div className="flex flex-col justify-center gap-4 md:flex-row md:gap-[2rem] md:justify-between text-[1.2rem]">
           <div className="flex flex-col justify-start items-start gap-[1rem] pl-4 pr-8 md:pl-0 md:pr-0">
             <p>
-              I made this website to serve as a gateway to meet awesome people{" "}
-              <br /> to remove the strange from the stranger (As Brian Chesky
-              says it.)
-            </p>
+            If you’re reading this, feel free to send me a message</p>
             <p>
-              I'd be very happy to hear from you, Let's get some{" "}
+            Are you in Banglore? let's get {" "}
               <span className="font-bold">Coffee</span>
+              :)
             </p>
             <div className="flex flex-row gap-6">
               <a
