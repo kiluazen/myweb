@@ -33,7 +33,7 @@ export default function Header() {
       </div>
       <div className="flex flex-row justify-end pr-3 pt-8 pb-12 md:pr-0 md:justify-center md:items-center">
         {/* <div className="flex flex-row md:pl-0 pt-8 pb-12"> */}
-        <div className="flex flex-row px-2 gap-4 lg:gap-[3rem] text-[1.2rem]">
+        <div className="flex flex-row px-2 gap-4 lg:gap-[3rem] text-[1.1rem] md:text-[1.2rem]">
           <a
             className="hidden md:flex hover:text-[#DA95DE] font-medium"
             href="/"

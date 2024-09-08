@@ -25,11 +25,15 @@ The product idea is basically rogue ai, It's where people come when they want th
 
 I am very new to Interpretability Research, I have studied Linear Algebra and these Deep Learnign Architectures in College. I also trained a transformer architecture from sratch. But training an AutoEncoder to learn features of model activations, this is all new to me and don't have any intuition on.
 
-So the pursuit of just figuring this out is pretty fruitful. But If I wear my entrepreneurial hat for a second, First of all - Rogue ai is just terrible branding (or not). It will associate bad intention to what you are doing. - THIS IS NOT SOLVING ANYBODY's problem. Have to figure out who wants this, who actually get's annoyed when chatgpt doesn't answer what they want it to answer.
+So the pursuit of just figuring this out is pretty fruitful. But If I wear my entrepreneurial hat for a second, First of all 
+- Rogue ai is just terrible branding (or not). It will associate bad intention to what you are doing. 
+- THIS IS NOT SOLVING ANYBODY's problem. Have to figure out who wants this, who actually get's annoyed when chatgpt doesn't answer what they want it to answer.
 Just an offensive uncle you go talk to isn't gonna cut it.
 
 The reason I am thinking about this idea out loud is because, this would be good link to attach when I reach out to anyone in needing direction with the Interpretability Research Techniques.
 
 I strongly urge to read the Anthropic's Blog, I didn't understand half of it. But I got the gist of how they are appraoching this.
+
+I have also found this explanation of SAE's blog by [Adam Karvonen](https://adamkarvonen.github.io/machine_learning/2024/06/11/sae-intuitions.html) helpful. Maybe I'll reach out to him for help, first I gotta get this thing moving.
 
 I mean if I do do this, it could be a path for me to be on the Interpretability team at Anthropic 😇. I mean I know I am streching at this point but who knows, just putting it out there 😂.
