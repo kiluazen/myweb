@@ -16,13 +16,11 @@ function about() {
               Interests
             </h1>
             <p>
-              How far a group of driven people can go. The wealth creation that
-              startups enable. Putting myself in a place that leads to compound
-              effects.
+              The wealth creation that startups enable. Putting myself in a place that leads to compound
+              growth.
             </p>
             <p>
-              I love reading Biographies, Instances where a small group of great
-              people do incredible things.(Bell Labs, Xerox, Ycomb)
+              I love reading Biographies, Instances where a small group of people do incredible things.(Bell Labs, Xerox, Ycomb)
             </p>
             <div className="flex flex-col xl:flex-row gap-2">
               <p>Some curated lists, I revist every year: </p>
