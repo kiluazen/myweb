@@ -20,7 +20,7 @@ export default function Home() {
               <p>I showcase my work, thoughts, and interests here to connect with awesome people across the internet</p>
               
               <p>
-                My latest endavour was to deisgn and 3d print fascinating geometric objects. I call it gateway to contemplation <a className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]" href="/products">GtC</a>
+                My latest endavour was to design and 3d print fascinating geometric objects. I call it gateway to contemplation <a className="underline text-[#9B9692] font-bold hover:text-[#DA95DE]" href="/products">GtC</a>
               </p>
               <p>
                 I'd love to hear from you, let me know what you think.
@@ -64,7 +64,7 @@ export default function Home() {
                   Podcasts
                 </a>
                 <a
-                  href="essays"
+                  href="/essays"
                   className="underline text-[#9B9692] hover:text-[#DA95DE]"
                 >
                   Essays
