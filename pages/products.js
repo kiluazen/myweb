@@ -11,18 +11,20 @@ const Products = () => {
     {
       name: "Interlocking Heart",
       images: [
-        "heart/heart_open.jpeg",
         "heart/heart_closed.jpeg",
-        "heart/heart_open.jpeg",
+        "heart/open_blue_heart.jpg",
       ],
+      video: "heart/helical_heart.mp4",
+      thumbnail: "heart/blue_heart_zoom.jpg", // Add this line
     },
     {
-      name: "Calabi-Yau Manifold",
+      name: "Reuleaux Tetrahedron",
       images: [
-        "calabi/calabi-yau.webp",
-        "calabi/yellow.jpeg",
-        "calabi/yellow_hole.jpeg",
+        "ruleaux/ok_2.jpg",
+        "ruleaux/hand_ruleaux.jpg",
       ],
+      video: "ruleaux/ruleaux.mp4",
+      thumbnail: "ruleaux/ruleaux.jpg",
     },
   ];
 
