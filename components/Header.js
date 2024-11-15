@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <header className="relative">
-      <div className="absolute top-0 left-1 pt-7 md:pt-5 md:left-[9rem] md:lg:left-[13rem] xl:left-[21rem] ">
+      <div className="absolute top-0 left-1 pt-7 md:pt-5 md:left-[9rem] md:lg:left-[11rem] xl:left-[18rem] ">
         <Link href="/">
           <img src="/logo.webp" className="w-[60px] md:w-[80px]" />
         </Link>
@@ -35,7 +35,7 @@ export default function Header() {
         {/* <div className="flex flex-row md:pl-0 pt-8 pb-12"> */}
         <div className="flex flex-row px-2 gap-4 lg:gap-[3rem] text-[1.1rem] md:text-[1.2rem]">
           <a
-            className="hidden md:flex hover:text-[#DA95DE] font-medium"
+            className="hidden md:lg:flex hover:text-[#DA95DE] font-medium"
             href="/"
           >
             Home
