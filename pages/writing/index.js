@@ -9,14 +9,14 @@ export default function BlogIndex({ posts }) {
   return (
     // <BaseLayout title="Blog" description="Latest articles." current="blog">
     <div>
-      <div className="flex flex-col pt-[4rem] pl-4 gap-4 lg:px-[18rem]">
+      <div className="flex flex-col pl-4 gap-4 lg:px-[18rem] md:pt-[2.5rem]">
       <div className="flex flex-row gap-6">
-        <h1 href="/writing" className="font-[Sora] text-[1.8rem] text-[#845EC2] pb-4 md:text-[2.5rem] not-italic font-bold leading-[120%]">
+        <h1 href="/writing" className="font-[Sora] text-[1.8rem] text-[#845EC2] pb-2 md:text-[2.5rem] not-italic font-bold leading-[120%]">
           Blog
         </h1>
         
-        <span className="text-[#525051] font-bold text-[2rem]">|</span>
-        <Link href="/writing/ideas" className="text-[#525051] font-[Sora] text-[1.8rem] underline hover:text-[#845EC2] pb-4 md:text-[2.5rem] not-italic font-bold leading-[120%]">
+        <span className="text-[#525051] font-bold text-[1.2rem] md:text-[2rem]">|</span>
+        <Link href="/writing/ideas" className="text-[#525051] font-[Sora] text-[1.8rem] underline hover:text-[#845EC2] pb-2 md:text-[2.5rem] not-italic font-bold leading-[120%]">
           Ideas
         </Link>
         </div>
