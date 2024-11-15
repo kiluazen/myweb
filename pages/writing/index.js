@@ -11,7 +11,7 @@ export default function BlogIndex({ posts }) {
     <div>
       <div className="flex flex-col pt-[4rem] pl-4 gap-4 lg:px-[18rem]">
       <div className="flex flex-row gap-6">
-        <h1 href="/writing" className="text-[#525051] font-[Sora] text-[1.8rem] text-[#845EC2] pb-4 md:text-[2.5rem] not-italic font-bold leading-[120%]">
+        <h1 href="/writing" className="font-[Sora] text-[1.8rem] text-[#845EC2] pb-4 md:text-[2.5rem] not-italic font-bold leading-[120%]">
           Blog
         </h1>
         
@@ -20,7 +20,7 @@ export default function BlogIndex({ posts }) {
           Ideas
         </Link>
         </div>
-        <p className="text-[green]">Work In Progress</p>
+        <p className="text-[#ae8507]">Work In Progress</p>
         <div className="flex flex-col gap-[1rem]">
           {posts.map((post, index) => (
             <div key={post.slug}>
