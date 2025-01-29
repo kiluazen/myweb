@@ -6,7 +6,7 @@ const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
-const TEST_USER_ID='55520887-6bc3-4b19-bc20-15a5b0d28500';
+// const TEST_USER_ID='55520887-6bc3-4b19-bc20-15a5b0d28500';
 
 export default function PurposefulData() {
     const [purposes, setPurposes] = useState([]);
@@ -16,6 +16,12 @@ export default function PurposefulData() {
     useEffect(() => {
         async function fetchData() {
             // Fetch purposes with their context switches
+            const userId = localStorage.getItem('purposefuluse_user_id');
+            if (!userId) {
+                console.error('No user ID found');
+                router.push('/auth');
+                return;
+            }
             const { data: purposeData, error } = await supabase
                 .from('purposes')
                 .select(`
@@ -34,7 +40,8 @@ export default function PurposefulData() {
                         created_at
                     )
                 `)
-                .eq('user_id', TEST_USER_ID)
+                // .eq('user_id', TEST_USER_ID)
+                .eq('user_id', userId)
                 .order('created_at', { ascending: false });
 
             if (error) {

@@ -15,6 +15,7 @@ export default function AuthCallback() {
             console.log('Auth state changed:', event, !!session);
             if (event === 'SIGNED_IN' && session) {
                 const EXTENSION_ID = localStorage.getItem('purposefuluse_extension_id');
+                localStorage.setItem('purposefuluse_user_id', session.user.id);
                 if (chrome?.runtime?.connect) {
                     console.log('Attempting to connect to extension');
                     try {
@@ -26,14 +27,14 @@ export default function AuthCallback() {
                         console.log('Auth success message sent to extension');
                         
                         // Redirect to data page after notifying extension
-                        router.push('/purposeful-data');
+                        router.push('/purposefuluse-data');
                     } catch (e) {
                         console.error('Extension communication failed:', e);
-                        router.push('/purposeful-data');
+                        router.push('/purposefuluse-data');
                     }
                 } else {
                     console.log('Not in extension context, redirecting');
-                    router.push('/purposeful-data');
+                    router.push('/purposefuluse-data');
                 }
             }
         });
