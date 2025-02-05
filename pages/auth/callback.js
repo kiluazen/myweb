@@ -6,7 +6,7 @@ const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
-
+const EXTENSION_ID = 'bgappmaifghlncgmighdpnkadcabchjd'
 export default function AuthCallback() {
     const router = useRouter();
 
@@ -14,7 +14,7 @@ export default function AuthCallback() {
         supabase.auth.onAuthStateChange((event, session) => {
             console.log('Auth state changed:', event, !!session);
             if (event === 'SIGNED_IN' && session) {
-                const EXTENSION_ID = localStorage.getItem('purposefuluse_extension_id');
+                // const EXTENSION_ID = localStorage.getItem('purposefuluse_extension_id');
                 localStorage.setItem('purposefuluse_user_id', session.user.id);
                 if (chrome?.runtime?.connect) {
                     console.log('Attempting to connect to extension');
