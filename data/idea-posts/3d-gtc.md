@@ -5,6 +5,12 @@ description: Fascinating Geometric structures on your Palm | Gateway to Contempl
 labels: Executed
 ---
 
-Essentially I will describe how I came about this idea and how i made it.
+I saw this toy on Twitter - it's an interlocking cone. I loved the way it was moving and thought I'd buy it.
 
-Until then checkout [GtC Products](https://kushalsm.com/products)
+Then I thought, why not make it myself? I had zero experience in building a CAD model or 3D printing. But I decided to give it a shot.
+
+I chatted with Claude and decided to write the logic in OpenSCAD.
+
+Checkout
+
+[GtC Products](https://kushalsm.com/products)

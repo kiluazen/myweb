@@ -4,7 +4,7 @@ const Portfolio = () => {
   const projects = [
     {
         name: "PurposefulUse",
-        description: "Chrome extension tracking daily context switches",
+        description: "Chrome extension that tracks context switches on my work sessions",
         year: "2025",
         link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
       },
@@ -14,6 +14,13 @@ const Portfolio = () => {
         description: "3D printed Contemplative Toys",
         year: "2024",
         link: "/products" // This could link to your existing products page
+      },
+
+      {
+        name: "ChatSync",
+        description: "Chrome Extension that exports conversation from claude.ai and chatgpt.com",
+        year: "2024",
+        link: "https://chromewebstore.google.com/search/ChatSync%20Extension" // This could link to your existing products page
       },
 
       {
@@ -31,12 +38,24 @@ const Portfolio = () => {
     
     {
       name: "Recite",
-      description: "Speechify but you can create custom voices",
+      description: "Speechify + make your own voices",
       year: "2024",
       link: "https://chromewebstore.google.com/detail/recite/phfjcdmiejoobfkokhfemoflmaepfdna"
     },
     
+    {
+      name: "CompareMacros",
+      description: "Compare macro by macro of any 2 foods",
+      year: "2023",
+      link: "https://comparemacros.netlify.app/" 
+    },
     
+    {
+      name: "Computer Vision Course",
+      description: "Chapters on Model Optimization and Model Optimization for a course by Hugging Face",
+      year: "2023",
+      link: "https://github.com/johko/computer-vision-course/pull/123" 
+    },
   ];
 
   return (

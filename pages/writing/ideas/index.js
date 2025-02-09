@@ -29,10 +29,10 @@ export default function IdeasSection({ posts }) {
                 </p>
                 <div className="text-[#525051] font-[Sora] non-italic font-bold flex gap-4">
                   <span>{post.publishDate}</span> 
-                  {post.labels && (
-                    <span className="bg-[#DFD7FE] text-[#525051] px-1.5 rounded-md">
-                      {post.labels}
-                    </span>
+                    {post.labels && (
+                      <span className={`bg-${post.labels === 'Executed' ? '[#D7E7CF]' : '[#DFD7FE]'} text-[#525051] px-1.5 rounded-md`}>
+                        {post.labels}
+                      </span>
                     )}
                 </div>
               </div>
