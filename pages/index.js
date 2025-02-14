@@ -20,7 +20,7 @@ export default function Home() {
               <p>I showcase my work, thoughts, and interests here to connect with awesome people across the internet</p>
               
               <p>
-                Checkout some <a href="/protfolio" className="text-[#9B9692] hover:text-[#DA95DE]">products</a> I have built 
+                Checkout some <a href="/portfolio" className="text-[#9B9692] hover:text-[#DA95DE]">products</a> I have built 
               </p>
               <p>
                 I'd love to hear from you, let me know what you think.
