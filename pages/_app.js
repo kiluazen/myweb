@@ -15,12 +15,19 @@ function MyApp({ Component, pageProps }) {
       {/* Add Simple Analytics script */}
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
      
-     
+      <Script 
+        src="/cursor-flow.js"
+        strategy="afterInteractive"
+        onLoad={() => console.log('Cursor flow script loaded via Next.js')}
+        onError={(e) => console.error('Script failed to load:', e)}
+      />
       <Header />
       <main className="flex-grow">
         <Component {...pageProps} />
       </main>
       <Footer />
+      
+      
     </div>
   );
 }
