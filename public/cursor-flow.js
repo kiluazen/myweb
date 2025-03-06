@@ -35,7 +35,9 @@
     highlight: null,
     startButton: null,
     targetElement: null,
-    sessionId: null
+    sessionId: null,
+    navigationInProgress: false,
+    lastUrl: window.location.pathname
   };
 
   /**
@@ -45,10 +47,24 @@
     console.log('Cursor Flow initializing...');
     
     // First check if we have an active session in progress
-    restoreState();
+    const savedState = window.CursorFlowUtils.StateManager.restore();
+    if (savedState) {
+      state.isPlaying = savedState.isPlaying;
+      state.currentStep = savedState.currentStep;
+      state.sessionId = savedState.sessionId;
+      
+      console.log('Restored state:', { 
+        isPlaying: state.isPlaying, 
+        currentStep: state.currentStep,
+        sessionId: state.sessionId
+      });
+    }
     
     // Log more info about current page and state
     console.log(`Current page: ${window.location.pathname}, Step: ${state.currentStep}`);
+    
+    // Set up navigation detection for Next.js
+    setupNavigationDetection();
     
     // First fetch the index to get the latest session if we don't have one
     if (!state.sessionId) {
@@ -82,45 +98,87 @@
   }
 
   /**
-   * Restore state from sessionStorage
+   * Set up navigation detection for Next.js
    */
-  function restoreState() {
-    try {
-      const savedState = sessionStorage.getItem('cursorFlowState');
-      if (savedState) {
-        const parsedState = JSON.parse(savedState);
-        
-        // Restore the important parts of state
-        state.isPlaying = parsedState.isPlaying;
-        state.currentStep = parsedState.currentStep;
-        state.sessionId = parsedState.sessionId;
-        
-        console.log('Restored state:', { 
-          isPlaying: state.isPlaying, 
-          currentStep: state.currentStep,
-          sessionId: state.sessionId
-        });
+  function setupNavigationDetection() {
+    // Store the current URL
+    state.lastUrl = window.location.pathname;
+    
+    // Listen for Next.js route changes
+    if (typeof window !== 'undefined' && window.next) {
+      console.log('Next.js detected, setting up router change listeners');
+      
+      try {
+        // For newer versions of Next.js
+        window.next.router.events.on('routeChangeStart', handleRouteChangeStart);
+        window.next.router.events.on('routeChangeComplete', handleRouteChangeComplete);
+      } catch (e) {
+        console.log('Could not attach to Next.js router events directly');
       }
-    } catch (error) {
-      console.error('Failed to restore state:', error);
     }
+    
+    // Fallback: Observe the body for changes, which happens during navigation
+    const bodyObserver = new MutationObserver((mutations) => {
+      const currentUrl = window.location.pathname;
+      if (currentUrl !== state.lastUrl) {
+        console.log(`URL changed from ${state.lastUrl} to ${currentUrl}`);
+        state.lastUrl = currentUrl;
+        handleRouteChangeComplete(currentUrl);
+      }
+    });
+    
+    bodyObserver.observe(document.body, { 
+      childList: true,
+      subtree: true
+    });
+    
+    // Also monitor URL changes directly
+    const originalPushState = history.pushState;
+    history.pushState = function() {
+      originalPushState.apply(this, arguments);
+      
+      // After pushState, check if navigation is happening
+      const currentUrl = window.location.pathname;
+      if (currentUrl !== state.lastUrl) {
+        console.log(`History pushState: URL changed to ${currentUrl}`);
+        state.lastUrl = currentUrl;
+        state.navigationInProgress = true;
+        
+        // Handle completion after a delay
+        setTimeout(() => {
+          state.navigationInProgress = false;
+          handleRouteChangeComplete(currentUrl);
+        }, 500);
+      }
+    };
   }
 
   /**
-   * Save state to sessionStorage
+   * Handle route change start
    */
-  function saveState() {
-    try {
-      // Only save the essentials
-      const stateToSave = {
-        isPlaying: state.isPlaying,
-        currentStep: state.currentStep,
-        sessionId: state.sessionId
-      };
-      
-      sessionStorage.setItem('cursorFlowState', JSON.stringify(stateToSave));
-    } catch (error) {
-      console.error('Failed to save state:', error);
+  function handleRouteChangeStart(url) {
+    console.log(`Route change starting to: ${url}`);
+    state.navigationInProgress = true;
+  }
+
+  /**
+   * Handle route change complete
+   */
+  function handleRouteChangeComplete(url) {
+    console.log(`Route change completed to: ${url}`);
+    state.navigationInProgress = false;
+    
+    // If we're playing and on the right step, resume after navigation
+    if (state.isPlaying && state.recording) {
+      setTimeout(() => {
+        const currentStep = state.recording.interactions[state.currentStep];
+        if (currentStep && currentStep.pageInfo && currentStep.pageInfo.path === window.location.pathname) {
+          console.log('Page matches next step, attempting to resume playback');
+          playNextStep();
+        } else {
+          console.log('Page does not match expected path for current step');
+        }
+      }, 800); // Reduced from 1500ms
     }
   }
 
@@ -140,7 +198,7 @@
           // Use the most recent session by default
           state.sessionId = indexData.sessions[0].id;
           console.log(`Using latest session: ${state.sessionId}`);
-          saveState();
+          window.CursorFlowUtils.StateManager.save(state);
           return state.sessionId;
         } else {
           throw new Error('No recording sessions found');
@@ -323,7 +381,7 @@
     loadRecording(state.sessionId)
       .then(() => {
         state.isPlaying = true;
-        saveState();
+        window.CursorFlowUtils.StateManager.save(state);
         playNextStep();
       })
       .catch(error => {
@@ -362,164 +420,9 @@
     }
     
     // Save state
-    saveState();
+    window.CursorFlowUtils.StateManager.save(state);
     
     console.log('Playback stopped');
-  }
-
-  /**
-   * Find an element based on various selectors from the recorded interaction
-   */
-  function findElementFromInteraction(interaction) {
-    const element = interaction.element;
-    let targetElement = null;
-    
-    console.log('Looking for element:', {
-      tagName: element.tagName,
-      text: element.textContent,
-      selector: element.cssSelector,
-      path: element.path ? element.path.join(' > ') : 'none'
-    });
-    
-    // Try by ID first (most reliable)
-    if (element.id) {
-      targetElement = document.getElementById(element.id);
-      if (targetElement) {
-        console.log('Found element by ID:', element.id);
-        return targetElement;
-      }
-    }
-    
-    // For long blog post titles, try with href attributes and partial text matching
-    if (element.tagName === 'A' && element.textContent && element.textContent.length > 30) {
-      console.log('Long text detected, trying partial text match for link');
-      const links = document.querySelectorAll('a');
-      
-      // First try with the first 30 characters for a partial match
-      const startText = element.textContent.substring(0, 30);
-      for (let i = 0; i < links.length; i++) {
-        if (links[i].textContent.startsWith(startText)) {
-          console.log('Found link by partial text match (first 30 chars):', startText);
-          return links[i];
-        }
-      }
-      
-      // Try with any significant substring
-      for (let i = 0; i < links.length; i++) {
-        // Check if link contains a significant portion of the text
-        if (links[i].textContent.includes(element.textContent.substring(5, 25))) {
-          console.log('Found link by significant substring match');
-          return links[i];
-        }
-      }
-    }
-    
-    // Try by DOM path (added for Puppeteer recordings)
-    if (element.path && element.path.length) {
-      try {
-        const pathSelector = element.path.join(' > ');
-        targetElement = document.querySelector(pathSelector);
-        if (targetElement) {
-          console.log('Found element by DOM path:', pathSelector);
-          return targetElement;
-        }
-        
-        // Try simplified path - just the last 3 parts which are often more stable
-        if (element.path.length > 3) {
-          const simplifiedPath = element.path.slice(-3).join(' > ');
-          console.log('Trying simplified path:', simplifiedPath);
-          targetElement = document.querySelector(simplifiedPath);
-          if (targetElement) {
-            console.log('Found element by simplified path');
-            return targetElement;
-          }
-        }
-      } catch (e) {
-        console.log('Error with path selector:', e.message);
-      }
-    }
-    
-    // Try by CSS selector (Puppeteer often uses a:contains())
-    if (element.cssSelector) {
-      try {
-        // Add jQuery-like :contains selector if it doesn't exist
-        if (!document.querySelector(':contains') && element.cssSelector.includes(':contains(')) {
-          document.querySelector = (function(orig) {
-            return function(selector) {
-              if (selector.includes(':contains(')) {
-                const parts = selector.split(':contains(');
-                const tag = parts[0];
-                const text = parts[1].slice(0, -1).replace(/"/g, '');
-                const elements = document.querySelectorAll(tag);
-                for (let i = 0; i < elements.length; i++) {
-                  if (elements[i].textContent.includes(text)) {
-                    return elements[i];
-                  }
-                }
-                return null;
-              }
-              return orig.call(this, selector);
-            };
-          })(document.querySelector);
-        }
-        
-        targetElement = document.querySelector(element.cssSelector);
-        if (targetElement) {
-          console.log('Found element by CSS selector:', element.cssSelector);
-          return targetElement;
-        }
-      } catch (e) {
-        console.log('Error with selector, trying alternatives:', e.message);
-      }
-    }
-    
-    // Try by text content + tag name
-    if (element.tagName && element.textContent) {
-      const elements = document.getElementsByTagName(element.tagName);
-      for (let i = 0; i < elements.length; i++) {
-        if (elements[i].textContent.trim() === element.textContent.trim()) {
-          console.log('Found element by tag + exact text:', element.tagName, element.textContent);
-          return elements[i];
-        }
-      }
-      
-      // Try partial match for links and buttons (helps with longer text items)
-      if (element.tagName === 'A' || element.tagName === 'BUTTON') {
-        for (let i = 0; i < elements.length; i++) {
-          if (elements[i].textContent.includes(element.textContent.trim().substring(0, 20))) {
-            console.log('Found element by tag + partial text:', element.tagName, element.textContent.substring(0, 20));
-            return elements[i];
-          }
-        }
-      }
-    }
-    
-    // Try by position as last resort for specific cases like this long blog title
-    if (element.elementRect && (element.textContent.length > 30)) {
-      console.log('Trying to find element by position as last resort');
-      const rect = element.elementRect;
-      const x = rect.left + (rect.width / 2);
-      const y = rect.top + (rect.height / 2);
-      
-      // Get element at position
-      const elementsAtPoint = document.elementsFromPoint(x, y);
-      if (elementsAtPoint.length > 0) {
-        // Find the first clickable element
-        for (let i = 0; i < elementsAtPoint.length; i++) {
-          if (elementsAtPoint[i].tagName === 'A' || 
-              elementsAtPoint[i].tagName === 'BUTTON' ||
-              elementsAtPoint[i].onclick) {
-            console.log('Found clickable element at position');
-            return elementsAtPoint[i];
-          }
-        }
-        console.log('Found element at position (might not be clickable)');
-        return elementsAtPoint[0];
-      }
-    }
-    
-    console.warn('Could not find element using identification methods');
-    return null;
   }
 
   /**
@@ -530,6 +433,25 @@
     
     console.log(`Highlighting element: ${element.tagName} with text "${element.textContent.trim()}"`);
     
+    // Immediately position the highlight first
+    const rect = element.getBoundingClientRect();
+    state.highlight.style.position = 'fixed';
+    state.highlight.style.left = `${rect.left - 4}px`;
+    state.highlight.style.top = `${rect.top - 4}px`;
+    state.highlight.style.width = `${rect.width + 8}px`;
+    state.highlight.style.height = `${rect.height + 8}px`;
+    state.highlight.style.display = 'block';
+    state.highlight.style.animation = 'pulse 1.5s infinite';
+    
+    // Scroll element into view if needed
+    if (typeof element.scrollIntoView === 'function') {
+      try {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (e) {
+        console.log('Could not scroll element into view:', e.message);
+      }
+    }
+    
     // Create or update positioning function
     if (!window.__cursorFlowUpdateHighlight) {
       // Define a function to update the highlight position
@@ -539,15 +461,17 @@
         const rect = state.targetElement.getBoundingClientRect();
         const highlight = state.highlight;
         
-        highlight.style.position = 'fixed'; // Change to fixed to follow viewport
+        highlight.style.position = 'fixed';
         highlight.style.left = `${rect.left - 4}px`;
         highlight.style.top = `${rect.top - 4}px`;
-        highlight.style.width = `${rect.width + 4}px`;
-        highlight.style.height = `${rect.height + 4}px`;
+        highlight.style.width = `${rect.width + 8}px`;
+        highlight.style.height = `${rect.height + 8}px`;
         highlight.style.display = 'block';
         
         // Request next frame for smooth animation
-        requestAnimationFrame(window.__cursorFlowUpdateHighlight);
+        if (window.__cursorFlowUpdateHighlight) {
+          requestAnimationFrame(window.__cursorFlowUpdateHighlight);
+        }
       };
     }
     
@@ -555,12 +479,11 @@
     state.targetElement = element;
     
     // Start the update loop
-    state.highlight.style.animation = 'pulse 1.5s infinite';
-    window.__cursorFlowUpdateHighlight();
+    requestAnimationFrame(window.__cursorFlowUpdateHighlight);
   }
 
   /**
-   * Move the cursor to an element (not to fixed coordinates)
+   * Move the cursor to an element
    */
   function moveCursorToElement(element) {
     if (!element || !state.cursor) return;
@@ -592,7 +515,7 @@
     console.log(`Advanced to step ${state.currentStep}`);
     
     // Save state before navigation happens
-    saveState();
+    window.CursorFlowUtils.StateManager.save(state);
     
     // Track what the next step should be (for debugging)
     if (state.recording && state.recording.interactions[state.currentStep]) {
@@ -601,7 +524,7 @@
       console.log(`Next page should be: ${nextStep.pageInfo?.path}`);
     }
     
-    // Let the navigation happen naturally
+    // Navigation will be detected by the navigation observer
   }
 
   /**
@@ -610,7 +533,13 @@
   function playNextStep() {
     if (!state.isPlaying || !state.recording) return;
     
-    // Double-check we're on the right step
+    // If navigation is in progress, wait
+    if (state.navigationInProgress) {
+      console.log('Navigation in progress, delaying next step');
+      setTimeout(playNextStep, 1000);
+      return;
+    }
+    
     console.log(`---------------------`);
     console.log(`Playing step ${state.currentStep + 1}/${state.recording.interactions.length}`);
     
@@ -625,12 +554,6 @@
     const interaction = state.recording.interactions[state.currentStep];
     console.log(`Step ${state.currentStep + 1} type: ${interaction.type}`);
     console.log(`Target element: ${interaction.element.tagName} with text "${interaction.element.textContent}"`);
-    console.log(`Current page: ${window.location.pathname}`);
-    console.log(`Expected page: ${interaction.pageInfo?.path}`);
-    
-    // Add DOM ready check
-    console.log(`DOM ready state: ${document.readyState}`);
-    console.log(`Is document fully interactive: ${document.readyState === 'interactive' || document.readyState === 'complete'}`);
     
     // Check if we need to navigate to a different page
     const currentPath = window.location.pathname;
@@ -638,7 +561,6 @@
     
     if (interactionPath && currentPath !== interactionPath) {
       console.log(`⚠️ Page mismatch! Current: ${currentPath}, Expected: ${interactionPath}`);
-      // Alert the user about the page mismatch
       const alertEl = document.createElement('div');
       alertEl.style.cssText = `
         position: fixed;
@@ -659,107 +581,118 @@
       alertEl.textContent = `This guide requires you to be on page: ${interactionPath}`;
       document.body.appendChild(alertEl);
       
-      // Remove after 5 seconds
-      setTimeout(() => {
-        alertEl.remove();
-      }, 5000);
-      
+      setTimeout(() => alertEl.remove(), 5000);
       return;
     }
     
-    // Add delay to ensure DOM is ready
-    console.log(`Waiting for DOM to stabilize before finding element...`);
-    setTimeout(() => {
-      // Check if target might be in the DOM
-      const checkForTargetTag = document.querySelectorAll(interaction.element.tagName);
-      console.log(`Found ${checkForTargetTag.length} ${interaction.element.tagName} elements in DOM`);
-      
-      if (interaction.element.textContent.length > 30) {
-        console.log(`Long text content detected (${interaction.element.textContent.length} chars)`);
-        
-        // Search for any element containing the first 15 chars
-        const searchText = interaction.element.textContent.substring(0, 15);
-        const foundElements = Array.from(document.querySelectorAll('*')).filter(el => 
-          el.textContent.includes(searchText)
-        );
-        console.log(`Elements containing "${searchText}": ${foundElements.length}`);
-        foundElements.forEach((el, i) => {
-          console.log(`  Match ${i+1}: <${el.tagName.toLowerCase()}> with text "${el.textContent.substring(0, 30)}..."`);
-        });
-      }
-      
-      // Find the target element
-      console.log(`Attempting to find target element...`);
-      const targetElement = findElementFromInteraction(interaction);
-      if (!targetElement) {
-        console.warn('❌ Could not find target element for interaction:', interaction);
-        
-        // Debug why element wasn't found
-        console.log(`Dumping all links on page for debugging:`);
-        const allLinks = document.querySelectorAll('a');
-        console.log(`Total links found: ${allLinks.length}`);
-        Array.from(allLinks).slice(0, 10).forEach((link, i) => {
-          console.log(`  Link ${i+1}: href="${link.getAttribute('href')}" text="${link.textContent.substring(0, 30)}${link.textContent.length > 30 ? '...' : ''}"`);
-        });
-        
-        // Try again after a longer delay before skipping
-        console.log(`Trying again after a longer delay (2 seconds)...`);
-        setTimeout(() => {
-          const secondAttempt = findElementFromInteraction(interaction);
-          if (secondAttempt) {
-            console.log(`✅ Found element on second attempt!`);
-            continueWithElement(secondAttempt, interaction);
-          } else {
-            console.warn(`❌ Still couldn't find element after delay, skipping step`);
-            // Skip to next step
-            state.currentStep++;
-            saveState();
-            setTimeout(playNextStep, 500);
-          }
-        }, 2000);
+    // KEY CHANGE: For dynamic Next.js routes, check content loading state
+    const checkForContent = () => {
+      const blogPostsContainer = document.querySelector('h2 a, main a');
+      if (!blogPostsContainer && (currentPath.includes('/writing/ideas') || currentPath.includes('/writing'))) {
+        console.log('Blog post container not found yet, waiting for content to load...');
+        setTimeout(checkForContent, 500);
         return;
       }
       
-      console.log(`✅ Found target element:`, {
-        tagName: targetElement.tagName,
-        text: targetElement.textContent.substring(0, 30) + (targetElement.textContent.length > 30 ? '...' : ''),
-        href: targetElement.getAttribute ? targetElement.getAttribute('href') : 'N/A',
-        isVisible: isElementVisible(targetElement)
-      });
+      findAndHighlightElement(interaction);
+    };
+    
+    // Wait longer for /writing/ideas page which has dynamic content
+    if (currentPath === '/writing/ideas') {
+      setTimeout(checkForContent, 1000); // Reduced from 2000ms
+    } else {
+      setTimeout(checkForContent, 500); // Reduced from 1000ms
+    }
+  }
+  
+  /**
+   * Find and highlight a target element
+   */
+  function findAndHighlightElement(interaction) {
+    // Log DOM state for debugging
+    const tagName = interaction.element.tagName;
+    const allElements = document.querySelectorAll(tagName);
+    console.log(`Found ${allElements.length} ${tagName} elements in DOM`);
+
+    // Debugging long text content
+    if (interaction.element.textContent.length > 30) {
+      const searchText = interaction.element.textContent.substring(0, 15);
+      const foundElements = Array.from(document.querySelectorAll('*')).filter(el => 
+        el.textContent.includes(searchText)
+      );
+      console.log(`Elements containing "${searchText}": ${foundElements.length}`);
       
-      continueWithElement(targetElement, interaction);
-    }, 1000); // Delay to ensure page is ready
-  }
-
-  // Helper to continue with a found element
-  function continueWithElement(targetElement, interaction) {
-    // Move cursor to the element (not using fixed coordinates)
-    moveCursorToElement(targetElement);
-    
-    // Highlight the element
-    highlightElement(targetElement);
-    
-    // Add click listener to the target element
-    targetElement.addEventListener('click', handleTargetClick);
-  }
-
-  // Helper to check if element is visible
-  function isElementVisible(element) {
-    if (!element) return false;
-    
-    const style = window.getComputedStyle(element);
-    if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
-      return false;
+      if (foundElements.length > 0) {
+        console.log('First matching element:', foundElements[0].outerHTML);
+      }
     }
     
-    const rect = element.getBoundingClientRect();
-    return rect.width > 0 && rect.height > 0;
+    // Find the target element
+    console.log('Finding element with ElementUtils...');
+    const targetElement = window.CursorFlowUtils.ElementUtils.findElementFromInteraction(interaction, document);
+    
+    if (!targetElement) {
+      console.warn('Could not find target element, will retry after delay');
+      
+      // Dump all links for debugging
+      console.log('All links on page:');
+      const links = document.querySelectorAll('a');
+      Array.from(links).slice(0, 5).forEach((link, i) => {
+        console.log(`Link ${i+1}: ${link.getAttribute('href')} - "${link.textContent.substring(0, 30)}..."`);
+      });
+      
+      // Try one more time with a longer delay
+      setTimeout(() => {
+        console.log('Retrying element find...');
+        const secondAttempt = window.CursorFlowUtils.ElementUtils.findElementFromInteraction(interaction, document);
+        if (secondAttempt) {
+          console.log('Found element on second attempt!');
+          completeStep(secondAttempt);
+        } else {
+          console.warn('Still could not find element, continuing to next step');
+          state.currentStep++;
+          window.CursorFlowUtils.StateManager.save(state);
+          setTimeout(playNextStep, 1000);
+        }
+      }, 1500); // Reduced from 3000ms
+      return;
+    }
+    
+    completeStep(targetElement);
+  }
+  
+  /**
+   * Complete the current step with the found element
+   */
+  function completeStep(element) {
+    console.log('Completing step with element:', element.outerHTML);
+    
+    // Move cursor to the element
+    moveCursorToElement(element);
+    
+    // Highlight the element
+    highlightElement(element);
+    
+    // Add click listener to the target element
+    element.addEventListener('click', handleTargetClick);
   }
 
-  // Initialize when the DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // Load utilities first, then initialize
+  if (window.CursorFlowUtils) {
+    // Initialize when the DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   } else {
-    init();
+    // Load utilities script first
+    const script = document.createElement('script');
+    script.src = '/cursor-flow-utils.js';
+    script.onload = () => {
+      console.log('Utilities loaded');
+      init();
+    };
+    document.head.appendChild(script);
   }
 })();
