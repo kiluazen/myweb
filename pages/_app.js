@@ -15,12 +15,18 @@ function MyApp({ Component, pageProps }) {
       {/* Add Simple Analytics script */}
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
      
-      <Script 
-        src="/cursor-flow.js"
+      {/* CursorFlow Integration with production URLs */}
+      <Script
+        src="https://hyphenbox-clientsdk.pages.dev/flow.js"
         strategy="afterInteractive"
-        onLoad={() => console.log('Cursor flow script loaded via Next.js')}
-        onError={(e) => console.error('Script failed to load:', e)}
+        onLoad={() => {
+          const cf = new window.CursorFlow({
+            apiUrl: 'https://hyphenbox-backend.vercel.app'
+          });
+          cf.init();
+        }}
       />
+
       <Header />
       <main className="flex-grow">
         <Component {...pageProps} />
