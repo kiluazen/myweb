@@ -21,11 +21,24 @@ function MyApp({ Component, pageProps }) {
         strategy="afterInteractive"
         onLoad={() => {
           const cf = new window.CursorFlow({
-            apiUrl: 'https://hyphenbox-backend.vercel.app'
+            apiUrl: 'https://hyphenbox-backend.vercel.app',
+            organizationId : '996b5d3d-801c-4619-8648-7e4d27deecf5'
           });
           cf.init();
         }}
       />
+
+  {/* <Script
+        src="/flow.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          const cf = new window.CursorFlow({
+            apiUrl: 'http://localhost:8000',
+            organizationId : '996b5d3d-801c-4619-8648-7e4d27deecf5'
+          });
+          cf.init();
+        }}
+      />   */}
 
       <Header />
       <main className="flex-grow">
