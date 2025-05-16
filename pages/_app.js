@@ -20,11 +20,8 @@ function MyApp({ Component, pageProps }) {
         src="https://hyphenbox-clientsdk.pages.dev/flow.js"
         strategy="afterInteractive"
         onLoad={() => {
-          const cf = new window.CursorFlow({
-            apiUrl: 'https://hyphenbox-backend.vercel.app',
-            organizationId : '996b5d3d-801c-4619-8648-7e4d27deecf5'
-          });
-          cf.init();
+          window.hyphenbox &&
+            window.hyphenbox.init({ apiKey: 'hbk_live_c08e1b955a977b8b282dbb9c41842ae19ef934e1dae570f2' });
         }}
       />
 
