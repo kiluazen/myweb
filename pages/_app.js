@@ -16,15 +16,18 @@ function MyApp({ Component, pageProps }) {
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
      
       {/* CursorFlow Integration with production URLs */}
-      <Script
-        src="https://hyphenbox-clientsdk.pages.dev/flow.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          window.hyphenbox &&
-            window.hyphenbox.init({ apiKey: 'hbk_live_c08e1b955a977b8b282dbb9c41842ae19ef934e1dae570f2' });
-        }}
-      />
-
+      // Ensure you have: import Script from 'next/script';
+    <Script
+      src="https://hyphenbox-clientsdk.pages.dev/flow.js"
+      strategy="afterInteractive"
+      onLoad={() => {
+        const cf = new window.CursorFlow({
+          apiKey: 'hbk_live_c08e1b955a977b8b282dbb9c41842ae19ef934e1dae570f2'
+        });
+        cf.init();
+      }}
+    />
+      
   {/* <Script
         src="/flow.js"
         strategy="afterInteractive"
