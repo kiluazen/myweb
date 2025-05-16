@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }) {
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
      
       {/* CursorFlow Integration with production URLs */}
-      // Ensure you have: import Script from 'next/script';
     <Script
       src="https://hyphenbox-clientsdk.pages.dev/flow.js"
       strategy="afterInteractive"
