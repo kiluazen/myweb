@@ -3,17 +3,16 @@ import { useState } from "react";
 const Portfolio = () => {
   const projects = [
     {
+      name: "Hyphenbox",
+      description: "AI-powered platform for seamless text hyphenation and layout optimization.",
+      year: "2025",
+      link: "https://hyphenbox.com"
+    },
+    {
         name: "PurposefulUse",
         description: "Chrome extension that tracks context switches on my work sessions",
         year: "2025",
         link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
-      },
-
-      {
-        name: "Hyphenbox",
-        description: "AI-powered platform for seamless text hyphenation and layout optimization.",
-        year: "2024",
-        link: "https://hyphenbox.com"
       },
 
       {
