@@ -10,6 +10,13 @@ const Portfolio = () => {
       },
 
       {
+        name: "Hyphenbox",
+        description: "AI-powered platform for seamless text hyphenation and layout optimization.",
+        year: "2024",
+        link: "https://hyphenbox.com"
+      },
+
+      {
         name: "GtC",
         description: "3D printed Contemplative Toys",
         year: "2024",

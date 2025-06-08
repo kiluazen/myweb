@@ -46,8 +46,8 @@ export default function Header() {
           >
             About
           </a>
-          <a className="hover:text-[#DA95DE] font-medium" href="/writing">
-            Writing
+          <a className="hover:text-[#DA95DE] font-medium" href="https://kushalsm.bearblog.dev/blog/">
+            Blog
           </a>
           <a className="hover:text-[#DA95DE] font-medium" href="/portfolio">
             Portfolio
