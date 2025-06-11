@@ -4,85 +4,73 @@ const Portfolio = () => {
   const projects = [
     {
       name: "Hyphenbox",
-      description: "AI-powered platform for seamless text hyphenation and layout optimization.",
-      year: "2025",
+      description: "An SDK for building interactive user onboarding and in-app guidance flows with browser agents that keep tutorials up-to-date with UI changes",
       link: "https://hyphenbox.com"
     },
     {
         name: "PurposefulUse",
-        description: "Chrome extension that tracks context switches on my work sessions",
-        year: "2025",
+        description: "Data Driven Approach to analyse context switches during work sessions, Helping you focus and use Computers with Purpose",
         link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
       },
 
       {
-        name: "GtC",
-        description: "3D printed Contemplative Toys",
-        year: "2024",
-        link: "/products" // This could link to your existing products page
+        name: "Gateway to Contemplation",
+        description: "Gtc are fascinating geometric shapes 3D printed!, that make you contemplate and see the beauty around you",
+        link: "/products"
       },
 
       {
         name: "ChatSync",
-        description: "Chrome Extension that exports conversation from claude.ai and chatgpt.com",
-        year: "2024",
-        link: "https://chromewebstore.google.com/search/ChatSync%20Extension" // This could link to your existing products page
+        description: "Move chats from Claude to ChatGPT and vice versa seemlessly",
+        link: "https://chromewebstore.google.com/search/ChatSync%20Extension"
       },
 
       {
         name: "Facemax",
-        description: "Android app for hyper-realistic avatar generation & skin analysis + product recommendation",
-        year: "2024",
+        description: "Clone yourself with hyper-realistic image generation and AI-powered skin analysis",
         link: "https://facemax.pro/"
       },
     {
       name: "Elzo AI",
-      description: "AI User researcher that turns user feedback into product insights",
-      year: "2024",
-      link: "https://elzo.ai/" // You can define where each project should link to
+      description: "User research Chatbot that has conversations with users wherever they are via call or whatsapp, and mines product insights through AI analysis",
+      link: "https://elzo.ai/"
     },
     
     {
       name: "Recite",
-      description: "Speechify + make your own voices",
-      year: "2024",
+      description: "text-to-speech Chrome extension that combines Speechify functionality with custom AI voice creation capabilities",
       link: "https://chromewebstore.google.com/detail/recite/phfjcdmiejoobfkokhfemoflmaepfdna"
     },
     
     {
       name: "CompareMacros",
-      description: "Compare macro by macro of any 2 foods",
-      year: "2023",
-      link: "https://comparemacros.netlify.app/" 
+      description: "Compare any two foods macro-by-macro analysis for meal planning",
+      link: "https://comparemacros.netlify.app"
     },
     
     {
       name: "Computer Vision Course",
-      description: "Chapters on Model Optimization and Model Optimization for a course by Hugging Face",
-      year: "2023",
-      link: "https://github.com/johko/computer-vision-course/pull/123" 
+      description: "Contributed chapters on Model Optimization and deployment for 🤗 Hugging Face's computer vision Course",
+      link: "https://github.com/huggingface/computer-vision-course/pull/123" 
     },
   ];
 
   return (
-    <div className="px-4 md:px-[1rem] lg:px-[18rem] py-8">
-      <div className="flex flex-col ">  {/* reduced gap between rows */}
+    <div className="px-4 md:px-8 lg:px-16 xl:px-24 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {projects.map((project, index) => (
           <a 
             key={index} 
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group grid grid-cols-[1.2fr,1.8fr,0.4fr] items-center p-3 hover:bg-[#DFD7FE] rounded-lg transition-colors"
+            className="group bg-[#DFD7CF] rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:transform hover:-translate-y-1 border border-[#DA95DE] flex flex-col"
           >
-            <div className="font-[Sora] text-[1.1rem] font-bold text-[#525051]">
+            <div className="font-[Sora] text-lg font-bold text-[#525051] mb-3 flex-shrink-0">
               {project.name}
             </div>
-            <div className="text-[#525051] text-[1rem]">
+            <div className="text-[#525051] text-sm leading-relaxed">
               {project.description}
-            </div>
-            <div className="text-[#525051] font-[Sora] font-bold justify-self-end">
-              {project.year}
             </div>
           </a>
         ))}
