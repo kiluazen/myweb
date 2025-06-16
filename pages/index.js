@@ -17,15 +17,12 @@ export default function Home() {
               <h1 className="text-[#525051] font-[Sora] text-[1.8rem] md:text-[2.5rem] not-italic font-bold leading-[120%]">
                Hello! I'm Kushal
               </h1>
-              <h3 className="text-[#525051] font-[Sora] text-[1.5rem] not-italic font-bold leading-[120%]">
-              Currently
-              </h3>
-              <ul></ul>
+              <div className="text-[1.1rem]">
                 <li>Building <a href="https://hyphenbox.com" className="text-[#9B9692] hover:text-[#DA95DE]">hyphenbox</a> : a “second cursor” that guides users inside SaaS apps</li>
-                <li>Independent consultant : browser agents, memory layers, AI engineering </li>
+                <li>Independent consultant : browser agents, memory layers, AI engineering, and more</li>
                 <li>Always up for conversations about what you’re building</li>
               
-              <p>
+              <p className="pt-2">
               What I've built: <a href="/portfolio" className="text-[#9B9692] hover:text-[#DA95DE]">[portfolio]</a>
               </p>
               <p>
@@ -37,7 +34,7 @@ export default function Home() {
               </a>
               </p>
             </div>
-  
+            </div>
             <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <div>
                 <span>Curated Media :</span>
