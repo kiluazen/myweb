@@ -40,26 +40,26 @@ export default function Header() {
           >
             Home
           </a>
-          <a
+          {/* <a
             className="hover:text-flex hover:text-[#DA95DE] font-medium"
             href="/about"
           >
             About
-          </a>
-          <a className="hover:text-[#DA95DE] font-medium" href="https://kushalsm.bearblog.dev/blog/">
-            Blog
+          </a> */}
+          <a className="hover:text-[#DA95DE] font-medium" href="https://kushalsm.bearblog.dev/blog/" target="_blank" rel="noopener noreferrer">
+            Writing
           </a>
           <a className="hover:text-[#DA95DE] font-medium" href="/portfolio">
             Portfolio
           </a>
-          <a
+          {/* <a
             className="hover:text-[#DA95DE] font-medium"
             href="/kushal_iitb.pdf"
             id="resume-clicked"
             onClick={handleResumeClick}
           >
             Resume
-          </a>
+          </a> */}
         </div>
         {/* </div> */}
       </div>
