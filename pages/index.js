@@ -19,6 +19,7 @@ export default function Home() {
               </h1>
               <div className="text-[1.1rem]">
                 <li>Building <a href="https://hyphenbox.com" className="text-[#9B9692] hover:text-[#DA95DE]">hyphenbox</a> : a “second cursor” that guides users inside SaaS apps</li>
+                <li>IIT Bombay gradudate living in Bangalore now, Let's get Coffee!</li>
                 <li>Independent consultant : browser agents, memory layers, AI engineering, and more</li>
                 <li>Always up for conversations about what you’re building</li>
               
