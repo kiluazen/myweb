@@ -50,7 +50,7 @@ export default function Header() {
             Writing
           </a>
           <a className="hover:text-[#DA95DE] font-medium" href="/portfolio">
-            Portfolio
+            Products
           </a>
           {/* <a
             className="hover:text-[#DA95DE] font-medium"
