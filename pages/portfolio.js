@@ -8,15 +8,16 @@ const Portfolio = () => {
       link: "https://hyphenbox.com"
     },
     {
-        name: "PurposefulUse",
+        name: "Purpose Use",
         description: "Data Driven Approach to analyse context switches during work sessions, Helping you focus and use Computers with Purpose",
-        link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
+        // link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
+        link: "/purpose-use"
       },
 
       {
         name: "Gateway to Contemplation",
         description: "Gtc are fascinating geometric shapes 3D printed!, that make you contemplate and see the beauty around you",
-        link: "/products"
+        link: "/gtc"
       },
 
       {
