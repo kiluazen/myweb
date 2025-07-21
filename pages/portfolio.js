@@ -23,7 +23,7 @@ const Portfolio = () => {
       {
         name: "ChatSync",
         description: "Move chats from Claude to ChatGPT and vice versa seemlessly",
-        link: "https://chromewebstore.google.com/search/ChatSync%20Extension"
+        link: "https://chromewebstore.google.com/detail/chatsync-extension/aogeiehiabknnmgmicjajofeiadphdji"
       },
 
       {
