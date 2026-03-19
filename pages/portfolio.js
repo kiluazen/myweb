@@ -3,6 +3,11 @@ import { useState } from "react";
 const Portfolio = () => {
   const projects = [
     {
+      name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
+      description: "Vibe code production ready apps",
+      link: "https://app.emergent.sh/"
+    },
+    {
       name: "Hyphenbox",
       description: "An SDK for building interactive user onboarding and in-app guidance flows with browser agents that keep tutorials up-to-date with UI changes",
       link: "https://hyphenbox.com"
