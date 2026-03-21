@@ -23,8 +23,8 @@ export default function Nexus() {
         <p className="text-[1rem] md:text-[1.1rem] mb-3">
           Connect this MCP server anywhere:
         </p>
-        <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3">
-          <code className="flex-1 text-[0.9rem] md:text-[1rem] break-all select-all">
+        <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 max-w-[550px] overflow-hidden">
+          <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
             {mcpUrl}
           </code>
           <button
