@@ -39,10 +39,10 @@ export default function Nexus() {
         </h2>
         <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 max-w-[550px] overflow-hidden">
           <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
-            pip install nexus-fitness
+            uv tool install nexus-fitness
           </code>
           <button
-            onClick={() => handleCopyCli("pip install nexus-fitness")}
+            onClick={() => handleCopyCli("uv tool install nexus-fitness")}
             className="shrink-0 text-[#9B9692] hover:text-[#DA95DE] transition-colors duration-200 cursor-pointer ml-3"
             aria-label={copiedCli ? "Copied" : "Copy command"}
           >
