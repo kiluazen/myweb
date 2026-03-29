@@ -33,41 +33,28 @@ export default function Nexus() {
         Track workouts and meals by just talking to ChatGPT, Claude, or any AI agent.
       </p>
 
-      <div className="mb-10">
+      <div className="mb-8">
         <h2 className="text-[#525051] font-[Sora] text-[1.4rem] md:text-[1.6rem] font-semibold mb-3">
           CLI
         </h2>
-        <p className="text-[1rem] md:text-[1.1rem] mb-3">
-          Install and log from your terminal. Works with Claude Code, Cursor, or any agent that can run commands.
-        </p>
-        <div className="flex flex-col gap-2 max-w-[550px]">
-          <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 overflow-hidden">
-            <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
-              pip install nexus-fitness
-            </code>
-            <button
-              onClick={() => handleCopyCli("pip install nexus-fitness")}
-              className="shrink-0 text-[#9B9692] hover:text-[#DA95DE] transition-colors duration-200 cursor-pointer ml-3"
-              aria-label={copiedCli ? "Copied" : "Copy command"}
-            >
-              <CopyIcon copied={copiedCli} />
-            </button>
-          </div>
-          <div className="flex flex-col bg-[#C4BBB3] rounded-lg px-4 py-3 overflow-hidden">
-            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus auth login</code>
-            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus history</code>
-            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus log --help</code>
-          </div>
+        <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 max-w-[550px] overflow-hidden">
+          <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
+            pip install nexus-fitness
+          </code>
+          <button
+            onClick={() => handleCopyCli("pip install nexus-fitness")}
+            className="shrink-0 text-[#9B9692] hover:text-[#DA95DE] transition-colors duration-200 cursor-pointer ml-3"
+            aria-label={copiedCli ? "Copied" : "Copy command"}
+          >
+            <CopyIcon copied={copiedCli} />
+          </button>
         </div>
       </div>
 
-      <div className="mb-10">
+      <div className="mb-8">
         <h2 className="text-[#525051] font-[Sora] text-[1.4rem] md:text-[1.6rem] font-semibold mb-3">
-          MCP Server
+          MCP
         </h2>
-        <p className="text-[1rem] md:text-[1.1rem] mb-3">
-          Connect this MCP server to ChatGPT or any MCP-compatible client:
-        </p>
         <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 max-w-[550px] overflow-hidden">
           <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
             {mcpUrl}
