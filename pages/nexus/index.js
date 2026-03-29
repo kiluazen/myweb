@@ -1,14 +1,28 @@
 import { useState } from "react";
 
 export default function Nexus() {
-  const [copied, setCopied] = useState(false);
+  const [copiedMcp, setCopiedMcp] = useState(false);
+  const [copiedCli, setCopiedCli] = useState(false);
   const mcpUrl = "https://nexus-tad5z6m6za-el.a.run.app/mcp/";
 
-  const handleCopy = () => {
+  const handleCopyMcp = () => {
     navigator.clipboard.writeText(mcpUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedMcp(true);
+    setTimeout(() => setCopiedMcp(false), 2000);
   };
+
+  const handleCopyCli = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedCli(true);
+    setTimeout(() => setCopiedCli(false), 2000);
+  };
+
+  const CopyIcon = ({ copied }) =>
+    copied ? (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+    ) : (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+    );
 
   return (
     <div className="flex flex-col px-6 py-8 md:px-[4rem] lg:px-[16rem]">
@@ -16,27 +30,54 @@ export default function Nexus() {
         Nexus
       </h1>
       <p className="text-[1.1rem] md:text-[1.3rem] mb-8">
-        Track workouts and meals by just talking to ChatGPT.
+        Track workouts and meals by just talking to ChatGPT, Claude, or any AI agent.
       </p>
 
-      <div className="mb-8">
+      <div className="mb-10">
+        <h2 className="text-[#525051] font-[Sora] text-[1.4rem] md:text-[1.6rem] font-semibold mb-3">
+          CLI
+        </h2>
         <p className="text-[1rem] md:text-[1.1rem] mb-3">
-          Connect this MCP server anywhere:
+          Install and log from your terminal. Works with Claude Code, Cursor, or any agent that can run commands.
+        </p>
+        <div className="flex flex-col gap-2 max-w-[550px]">
+          <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 overflow-hidden">
+            <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
+              pip install nexus-fitness
+            </code>
+            <button
+              onClick={() => handleCopyCli("pip install nexus-fitness")}
+              className="shrink-0 text-[#9B9692] hover:text-[#DA95DE] transition-colors duration-200 cursor-pointer ml-3"
+              aria-label={copiedCli ? "Copied" : "Copy command"}
+            >
+              <CopyIcon copied={copiedCli} />
+            </button>
+          </div>
+          <div className="flex flex-col bg-[#C4BBB3] rounded-lg px-4 py-3 overflow-hidden">
+            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus auth login</code>
+            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus history</code>
+            <code className="text-[0.9rem] md:text-[1rem] select-all">nexus log --help</code>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-10">
+        <h2 className="text-[#525051] font-[Sora] text-[1.4rem] md:text-[1.6rem] font-semibold mb-3">
+          MCP Server
+        </h2>
+        <p className="text-[1rem] md:text-[1.1rem] mb-3">
+          Connect this MCP server to ChatGPT or any MCP-compatible client:
         </p>
         <div className="flex items-center bg-[#C4BBB3] rounded-lg px-4 py-3 max-w-[550px] overflow-hidden">
           <code className="flex-1 text-[0.9rem] md:text-[1rem] select-all truncate min-w-0">
             {mcpUrl}
           </code>
           <button
-            onClick={handleCopy}
+            onClick={handleCopyMcp}
             className="shrink-0 text-[#9B9692] hover:text-[#DA95DE] transition-colors duration-200 cursor-pointer ml-3"
-            aria-label={copied ? "Copied" : "Copy URL"}
+            aria-label={copiedMcp ? "Copied" : "Copy URL"}
           >
-            {copied ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
-            )}
+            <CopyIcon copied={copiedMcp} />
           </button>
         </div>
       </div>
