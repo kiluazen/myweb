@@ -15,8 +15,7 @@ const Portfolio = () => {
     {
         name: "Purpose Use",
         description: "Data Driven Approach to analyse context switches during work sessions, Helping you focus and use Computers with Purpose",
-        // link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
-        link: "/purpose-use"
+        link: "https://chromewebstore.google.com/detail/purpose-use/bgappmaifghlncgmighdpnkadcabchjd"
       },
 
       {
