@@ -3,6 +3,11 @@ import { useState } from "react";
 const Portfolio = () => {
   const projects = [
     {
+      name: "Autark",
+      description: "A background agent that finds customers for your product",
+      link: "https://autark.sh"
+    },
+    {
       name: "Chrome Relay",
       description: "Let coding agents drive your real Chrome session",
       link: "https://chrome-relay.kushalsm.com"
