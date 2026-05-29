@@ -3,6 +3,11 @@ import { useState } from "react";
 const Portfolio = () => {
   const projects = [
     {
+      name: "Chrome Relay",
+      description: "Give coding agents your real Chrome session — they read pages, click, fill forms, type, and run JS on your live browser through a local bridge, all on backgrounded tabs without stealing focus",
+      link: "https://chrome-relay.kushalsm.com"
+    },
+    {
       name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
       description: "Vibe code production ready apps",
       link: "https://app.emergent.sh/"
