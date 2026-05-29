@@ -4,7 +4,7 @@ const Portfolio = () => {
   const projects = [
     {
       name: "Chrome Relay",
-      description: "Let coding agents drive your real Chrome session — read, click, and type on your live browser",
+      description: "Let coding agents drive your real Chrome session",
       link: "https://chrome-relay.kushalsm.com"
     },
     {
