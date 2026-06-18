@@ -25,7 +25,7 @@ export default function Emergent() {
       ],
     },
     {
-      title: "gpt-5.2 Responses api",
+      title: "Launch of gpt-5.2",
       points: [
         "Our platform started and grew through anthropic claude models. Around November I saw the openai models being competitive.",
         {
