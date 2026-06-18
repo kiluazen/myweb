@@ -1,13 +1,42 @@
 import Head from "next/head";
 
 export default function Autark() {
-  const different = [
-    "Built to work best with your agents — it lives in your Claude Code / Codex, not a separate dashboard.",
-    "Your agent gets its own email inbox.",
-    "Your LinkedIn is operated locally. Most SDR tools get you banned; running it on your own machine doesn't.",
-    "The agent does a lot, but the message and the quality control are always yours.",
-    "Hypothesis-based lead gen — the new idea. Leads are collected against a hypothesis about who the product is for. Run it a while and you start seeing which hypotheses actually get replies, then lean into those.",
+  const groups = [
+    {
+      title: "Built to work best with your agents",
+      points: [
+        "agent gets its own email box.",
+        "your linkedin is operated locally. Lot of sdrs struggle with linkedin bans.",
+        "there is a lot that the agent does, but ultimately the message and quality control is done by you!!",
+      ],
+    },
+    {
+      title: "A new idea baked in: Hypothesis based Lead gen",
+      points: [
+        "Leads are collected based on hypothesis of the product. And after a while of running autark, you will see which hypothesis is responding better and so on.",
+      ],
+    },
+    {
+      title: "Finally, I built this for me",
+      points: [
+        "I built many dev tools and plugins, etc. there is patience and understanding of the product involved in finding these people who have a high chance of having the problem etc. And autark does that for you.",
+      ],
+    },
   ];
+
+  const SubList = ({ items }) => (
+    <ul className="flex flex-col gap-2 mt-2 pl-5">
+      {items.map((p, i) => (
+        <li
+          key={i}
+          className="text-[1rem] md:text-[1.1rem] leading-relaxed text-[#525051]"
+        >
+          <span className="text-[#9B9692] mr-2">•</span>
+          <span>{p}</span>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <>
@@ -15,64 +44,45 @@ export default function Autark() {
         <title>Kushal — Autark</title>
         <meta
           name="description"
-          content="Autark — the AI SDR I built to run locally with my own coding agent and surface high-intent leads."
+          content="Autark, the AI SDR I built to run locally with my own coding agent and surface high intent leads."
         />
       </Head>
 
-      <div className="px-6 py-10 md:py-14 max-w-[720px] mx-auto">
-        <a
-          href="/products"
-          className="text-[#9B9692] hover:text-[#DA95DE] text-[0.9rem]"
-        >
-          ← all products
-        </a>
-
-        <h1 className="text-[#525051] font-[Sora] text-[2.4rem] md:text-[3rem] font-bold mt-6 mb-3">
+      <div className="px-6 py-10 md:py-14 max-w-[760px] mx-auto">
+        <h1 className="text-[#525051] font-[Sora] text-[2.4rem] md:text-[3rem] font-bold mb-3">
           Autark
         </h1>
 
         <p className="text-[1.15rem] md:text-[1.25rem] leading-relaxed text-[#525051] mb-8">
-          I know the world doesn't need another AI SDR. Let me tell you why this
-          one might still interest you.
+          I know the world doesn't need another AI SDR. I will tell you why this
+          might interest you.
         </p>
 
-        <div className="flex flex-col gap-5 text-[1.05rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-10">
-          <p>
-            I built Autark for me. I've shipped a lot of dev tools and plugins,
-            and the hard part was never the building — it was finding the handful
-            of people who actually have the problem. That takes patience and a
-            real feel for the product. Autark does that part for me.
-          </p>
-          <p>
-            It's an AI SDR, but the whole point is that it runs{" "}
-            <span className="font-semibold">
-              locally, driven by my own coding agent
-            </span>{" "}
-            — bringing the structure and harness an agent needs, while my data
-            stays mine.
-          </p>
-        </div>
+        <img
+          src="/autark-demo.png"
+          alt="The Autark dashboard, incoming replies with 561 leads and 29 hypotheses in flight"
+          className="rounded-xl border border-[#C4BBB3] shadow-sm w-full mb-10"
+        />
 
-        <h2 className="text-[#525051] font-[Sora] text-[1.3rem] md:text-[1.5rem] font-semibold mb-4">
-          What's different
-        </h2>
-        <ul className="flex flex-col gap-3 mb-10">
-          {different.map((item, i) => (
-            <li
-              key={i}
-              className="flex items-start gap-3 text-[1.05rem] md:text-[1.1rem] leading-relaxed text-[#525051]"
-            >
-              <span className="text-[#DA95DE] mt-1 shrink-0">—</span>
-              <span>{item}</span>
+        <ul className="flex flex-col gap-7 mb-10">
+          {groups.map((g, i) => (
+            <li key={i}>
+              <div className="flex items-baseline gap-2">
+                <span className="text-[#DA95DE] text-[1.1rem]">•</span>
+                <span className="font-[Sora] font-semibold text-[1.2rem] md:text-[1.35rem] text-[#525051]">
+                  {g.title}
+                </span>
+              </div>
+              <div className="pl-5">
+                <SubList items={g.points} />
+              </div>
             </li>
           ))}
         </ul>
 
-        <p className="text-[1.05rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-10">
-          It's your Claude Code and Codex with the Autark system on top. You're
-          never locked in — and all the memory and feedback makes your own agent
-          better over time, not just at outreach. It's been genuinely useful for
-          finding high-intent leads for the things I actually work on.
+        <p className="text-[0.95rem] italic leading-relaxed text-[#9B9692] mb-8">
+          ps: I love the word so much I will probably name it for some other
+          product I build.
         </p>
 
         <a
