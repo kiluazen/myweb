@@ -49,7 +49,7 @@ const Products = () => {
     {
       name: "Elzo AI",
       description: "User research Chatbot that has conversations with users wherever they are via call or whatsapp, and mines product insights through AI analysis",
-      link: "https://elzo.ai/"
+      link: "https://www.linkedin.com/company/elzo-ai/"
     },
     
     {
