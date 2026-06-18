@@ -26,7 +26,7 @@ export default function Home() {
                 <li>Always up for conversations about what you’re building</li>
               
               <p className="pt-2">
-              What I've built: <a href="/portfolio" className="text-[#9B9692] hover:text-[#DA95DE]">[portfolio]</a>
+              What I've built: <a href="/products" className="text-[#9B9692] hover:text-[#DA95DE]">[products]</a>
               </p>
               <p>
                 I'd love to hear from you: <a
