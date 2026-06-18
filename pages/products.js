@@ -3,19 +3,19 @@ import { useState } from "react";
 const Products = () => {
   const projects = [
     {
+      name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
+      description: "Vibe code production ready apps",
+      link: "/emergent"
+    },
+    {
       name: "Autark",
       description: "A background agent that finds customers for your product",
-      link: "https://autark.sh"
+      link: "/autark"
     },
     {
       name: "Chrome Relay",
       description: "Let coding agents drive your real Chrome session",
       link: "https://chrome-relay.kushalsm.com"
-    },
-    {
-      name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
-      description: "Vibe code production ready apps",
-      link: "https://app.emergent.sh/"
     },
     {
       name: "Hyphenbox",
