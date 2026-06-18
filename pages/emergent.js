@@ -56,15 +56,11 @@ export default function Emergent() {
           text: "Mainly the work here is building the mcp surfaces to be able to plugin to the agent:",
           sub: [
             "mcp for the credit history and all that ledger for the agent",
-            "mcp for agent trace",
+            "mcp to query the agent user interactions",
             "mcp for users' app production logs",
             "our codebases (so that it can figure out if its a platform issue)",
             "mcp to access sandboxes provided to the users",
           ],
-        },
-        {
-          text: "All of this combined makes for a very impressive customer support. Cause our customer support consists of:",
-          sub: ["credit issues", "app building frustrations etc."],
         },
       ],
     },
@@ -132,18 +128,9 @@ export default function Emergent() {
         </h1>
 
         <p className="text-[1.05rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-10">
-          I was an engineer at{" "}
-          <a
-            href="https://app.emergent.sh/landing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#DA95DE] hover:underline"
-          >
-            Emergent
-          </a>
-          , an AI agent that turns a prompt into a production ready, full stack
-          app. As of June it is at near $200M ARR. I am gonna list down some of
-          the big chunk work I have done, in a timeline.
+          As of June it is at $200M ARR. All within a year, the growth is
+          astonishing. Some of the needle moving work I did during my time
+          there:
         </p>
 
         <ul className="flex flex-col gap-7 mb-10">
