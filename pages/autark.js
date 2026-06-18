@@ -81,8 +81,8 @@ export default function Autark() {
           </ul>
 
           <p className="text-[0.9rem] sm:text-[0.95rem] italic leading-relaxed text-[#9B9692] mb-8">
-            ps: I love the word so much I will probably name it for some other
-            product I build.
+            ps: I love the word autark so much I will probably name it for some
+            other product I build.
           </p>
 
           <a
