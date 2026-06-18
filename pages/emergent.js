@@ -125,7 +125,8 @@ export default function Emergent() {
         />
       </Head>
 
-      <div className="px-6 py-10 md:py-14 max-w-[760px] mx-auto">
+      <div className="px-4 sm:px-6 py-10 md:py-14 max-w-[800px] mx-auto">
+        <div className="bg-[#DFD7CF] rounded-xl border border-[#DA95DE] p-6 md:p-10">
         <h1 className="text-[#525051] font-[Sora] text-[2.4rem] md:text-[3rem] font-bold mb-3">
           Emergent
         </h1>
@@ -173,6 +174,7 @@ export default function Emergent() {
         >
           emergent.sh →
         </a>
+        </div>
       </div>
     </>
   );
