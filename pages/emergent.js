@@ -69,28 +69,30 @@ export default function Emergent() {
   const honorable = ["tons of A/B experimenting frameworks", "bugs bugs bugs bugs"];
 
   const SubList = ({ items, level = 1 }) => (
-    <ul className={`flex flex-col gap-2 ${level === 1 ? "mt-2 pl-5" : "mt-1.5 pl-6"}`}>
+    <ul className="flex flex-col gap-2 mt-2">
       {items.map((p, i) => {
         const text = typeof p === "string" ? p : p.text;
+        const isSub = level > 1;
         return (
-          <li
-            key={i}
-            className={`${
-              level === 1
-                ? "text-[1rem] md:text-[1.05rem] text-[#525051]"
-                : "text-[0.95rem] md:text-[1rem] text-[#6b6869]"
-            } leading-relaxed`}
-          >
+          <li key={i} className="flex gap-2">
             <span
-              className="mr-2"
-              style={{ color: level === 1 ? "#9B9692" : "#C4A0C9" }}
+              className="shrink-0 leading-relaxed"
+              style={{ color: isSub ? "#C4A0C9" : "#9B9692" }}
             >
               •
             </span>
-            <span>{text}</span>
-            {typeof p !== "string" && p.sub && (
-              <SubList items={p.sub} level={2} />
-            )}
+            <div
+              className={`leading-relaxed ${
+                isSub
+                  ? "text-[0.95rem] md:text-[1rem] text-[#6b6869]"
+                  : "text-[1rem] md:text-[1.05rem] text-[#525051]"
+              }`}
+            >
+              {text}
+              {typeof p !== "string" && p.sub && (
+                <SubList items={p.sub} level={2} />
+              )}
+            </div>
           </li>
         );
       })}
@@ -100,12 +102,12 @@ export default function Emergent() {
   const Section = ({ title, points }) => (
     <li>
       <div className="flex items-baseline gap-2">
-        <span className="text-[#DA95DE] text-[1.1rem]">•</span>
-        <span className="font-[Sora] font-semibold text-[1.2rem] md:text-[1.35rem] text-[#525051]">
+        <span className="text-[#DA95DE] shrink-0">•</span>
+        <span className="font-[Sora] font-semibold text-[1.1rem] sm:text-[1.25rem] md:text-[1.35rem] text-[#525051]">
           {title}
         </span>
       </div>
-      <div className="pl-5">
+      <div className="pl-4 sm:pl-5">
         <SubList items={points} />
       </div>
     </li>
@@ -121,46 +123,46 @@ export default function Emergent() {
         />
       </Head>
 
-      <div className="px-4 sm:px-6 py-10 md:py-14 max-w-[800px] mx-auto">
-        <div className="bg-[#DFD7CF] rounded-xl border border-[#DA95DE] p-6 md:p-10">
-        <h1 className="text-[#525051] font-[Sora] text-[2.4rem] md:text-[3rem] font-bold mb-3">
-          Emergent
-        </h1>
+      <div className="px-4 sm:px-6 py-8 sm:py-12 md:py-14 max-w-[800px] mx-auto">
+        <div className="bg-[#DFD7CF] rounded-xl border border-[#DA95DE] p-5 sm:p-7 md:p-10">
+          <h1 className="text-[#525051] font-[Sora] text-[2.1rem] sm:text-[2.5rem] md:text-[3rem] font-bold mb-3">
+            Emergent
+          </h1>
 
-        <p className="text-[1.05rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-10">
-          As of June it is at $200M ARR. All within a year, the growth is
-          astonishing. Some of the needle moving work I did during my time
-          there:
-        </p>
+          <p className="text-[1rem] sm:text-[1.1rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-8 md:mb-10">
+            As of June it is at $200M ARR. All within a year, the growth is
+            astonishing. Some of the needle moving work I did during my time
+            there:
+          </p>
 
-        <ul className="flex flex-col gap-7 mb-10">
-          {work.map((w, i) => (
-            <Section key={i} title={w.title} points={w.points} />
-          ))}
-          <Section title="honorable mentions" points={honorable} />
-        </ul>
+          <ul className="flex flex-col gap-6 sm:gap-7 mb-8 md:mb-10">
+            {work.map((w, i) => (
+              <Section key={i} title={w.title} points={w.points} />
+            ))}
+            <Section title="honorable mentions" points={honorable} />
+          </ul>
 
-        <p className="text-[1.05rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-6">
-          If you are reading this far, please checkout{" "}
+          <p className="text-[1rem] sm:text-[1.1rem] md:text-[1.15rem] leading-relaxed text-[#525051] mb-6">
+            If you are reading this far, please checkout{" "}
+            <a
+              href="https://app.emergent.sh/landing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#DA95DE] hover:underline"
+            >
+              Emergent
+            </a>
+            . It's a magical platform, labor of love.
+          </p>
+
           <a
             href="https://app.emergent.sh/landing"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#DA95DE] hover:underline"
+            className="underline text-[#9B9692] hover:text-[#DA95DE] text-[0.95rem]"
           >
-            Emergent
+            emergent.sh →
           </a>
-          . It's a magical platform, labor of love.
-        </p>
-
-        <a
-          href="https://app.emergent.sh/landing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-[#9B9692] hover:text-[#DA95DE] text-[0.95rem]"
-        >
-          emergent.sh →
-        </a>
         </div>
       </div>
     </>
