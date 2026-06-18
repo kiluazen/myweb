@@ -4,7 +4,8 @@ const Products = () => {
   const projects = [
     {
       name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
-      description: "200M+ ARR",
+      description: "Vibe code production ready apps",
+      stat: "200M+ ARR",
       link: "/emergent"
     },
     {
@@ -14,7 +15,8 @@ const Products = () => {
     },
     {
       name: "Chrome Relay",
-      description: "100+ weekly active",
+      description: "Let coding agents drive your real Chrome session",
+      stat: "100+ weekly active",
       link: "https://chrome-relay.kushalsm.com"
     },
     {
@@ -88,6 +90,11 @@ const Products = () => {
             <div className="text-[#525051] text-sm leading-relaxed">
               {project.description}
             </div>
+            {project.stat && (
+              <div className="text-[#525051] text-sm font-semibold mt-1.5">
+                {project.stat}
+              </div>
+            )}
           </a>
         ))}
       </div>
