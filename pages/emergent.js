@@ -25,7 +25,7 @@ export default function Emergent() {
       ],
     },
     {
-      title: "Launch of gpt-5.2",
+      title: "Launch of gpt-5.2, Responses API",
       points: [
         "Our platform started and grew through anthropic claude models. Around November I saw the openai models being competitive.",
         {
@@ -66,7 +66,11 @@ export default function Emergent() {
     },
   ];
 
-  const honorable = ["tons of A/B experimenting frameworks", "bugs bugs bugs bugs"];
+  const honorable = [
+    "tons of A/B experimenting frameworks",
+    "image generation tools",
+    "bugs bugs bugs bugs",
+  ];
 
   const SubList = ({ items, level = 1 }) => (
     <ul className="flex flex-col gap-2 mt-2">

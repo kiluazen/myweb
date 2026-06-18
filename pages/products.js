@@ -4,7 +4,7 @@ const Products = () => {
   const projects = [
     {
       name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
-      description: "Vibe code production ready apps",
+      description: "200M+ ARR",
       link: "/emergent"
     },
     {
@@ -14,7 +14,7 @@ const Products = () => {
     },
     {
       name: "Chrome Relay",
-      description: "Let coding agents drive your real Chrome session",
+      description: "100+ weekly active",
       link: "https://chrome-relay.kushalsm.com"
     },
     {
