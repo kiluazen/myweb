@@ -5,7 +5,7 @@ const Products = () => {
     {
       name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
       description: "Vibe code production ready apps",
-      stat: "200M+ ARR",
+      stat: "150M+ ARR",
       link: "/emergent"
     },
     {
