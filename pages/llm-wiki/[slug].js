@@ -35,7 +35,7 @@ export default function WikiPost({ frontmatter, content }) {
         </div>
         <hr className="border-[#DA95DE] py-1" />
         <article
-          className="blog-content text-[1.05rem] md:text-[1.15rem] leading-[1.75] text-[#3a3340] max-w-none
+          className="blog-content min-w-0 w-full break-words text-[1.05rem] md:text-[1.15rem] leading-[1.75] text-[#3a3340] max-w-none
             [&>h2]:font-[Sora] [&>h2]:text-[#845EC2] [&>h2]:text-[1.35rem] [&>h2]:md:text-[1.6rem] [&>h2]:font-bold [&>h2]:mt-10 [&>h2]:mb-3 [&>h2]:leading-[125%]
             [&>h3]:font-[Sora] [&>h3]:text-[#525051] [&>h3]:text-[1.15rem] [&>h3]:font-bold [&>h3]:mt-7 [&>h3]:mb-2
             [&>p]:mb-4
@@ -44,6 +44,8 @@ export default function WikiPost({ frontmatter, content }) {
             [&_a]:underline [&_a]:text-[#DA95DE] hover:[&_a]:text-[#845EC2]
             [&_strong]:font-bold [&_strong]:text-[#525051]
             [&_code]:bg-[#f3ecfa] [&_code]:px-1 [&_code]:rounded [&_code]:text-[0.9em]
+            [&_pre]:bg-[#f3ecfa] [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:my-5 [&_pre]:overflow-x-auto [&_pre]:text-[0.8rem] [&_pre]:md:text-[0.95rem] [&_pre]:leading-[1.6] [&_pre]:whitespace-pre-wrap [&_pre]:break-words
+            [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-[1em]
             [&_blockquote]:border-l-4 [&_blockquote]:border-[#DA95DE] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#525051] [&_blockquote]:my-5
             [&_table]:w-full [&_table]:my-6 [&_table]:text-[0.85rem] [&_table]:md:text-[0.95rem] [&_table]:border-collapse [&_table]:block [&_table]:overflow-x-auto
             [&_th]:text-left [&_th]:font-bold [&_th]:text-[#525051] [&_th]:border-b-2 [&_th]:border-[#DA95DE] [&_th]:p-2 [&_th]:align-top
