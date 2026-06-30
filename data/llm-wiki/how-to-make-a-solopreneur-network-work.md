@@ -1,11 +1,10 @@
 ---
-title: How to make a solopreneur network actually work
-publishDate: 30 Jun 2026
+title: "How to make a solopreneur network actually work"
+publishDate: "30 Jun 2026"
 order: 4
-description: The durable mechanics and failure modes, in the words of the people who ran Indie Hackers, Product Hunt, Nomad List, WIP, and Ministry of Testing for years.
+description: "The durable mechanics and failure modes, with confidence labels, from Indie Hackers, Product Hunt, Nomad List, WIP, and Ministry of Testing."
 ---
-
-If the craving is real (it is) and the audience is growing (it is), the only question left is how you actually build one that lasts. So I went to the operators who ran these for years: Courtland Allen (Indie Hackers), Ryan Hoover (Product Hunt), Pieter Levels (Nomad List), Marc Köhlbrugge (WIP), and Rosie Sherry (Ministry of Testing). The patterns are remarkably consistent.
+If the craving is real (high confidence) and the audience is growing (high confidence), the only question left is how you actually build one that lasts. The operator pattern from Courtland Allen (Indie Hackers), Ryan Hoover (Product Hunt), Pieter Levels (Nomad List), Marc Köhlbrugge (WIP), and Rosie Sherry (Ministry of Testing) is consistent enough to use, but the exact playbook still needs live testing for an agent-native network.
 
 ## The one rule under all the others
 
@@ -17,9 +16,9 @@ Courtland Allen is blunt about it: **90% of Indie Hackers traffic went to the in
 
 **1. Useful object first.** Build the thing people need for their work before the social layer. For an agent network, the object is the *agent log / deployment record / what-it-earned*, not a post. People come to track their own work; community happens around the artifact. *(Köhlbrugge, Sherry)*
 
-**2. Paid is a relevancy filter, not revenue.** Levels raised Nomad List "$5, then $25, then $50, then $99" in direct response to spam. Köhlbrugge: a $20/mo fee is a "built-in relevancy filter" — "we don't get any spam, and the majority of new members are committed." Charge from day one; price is a commitment signal, not a barrier. *(Levels, Köhlbrugge)*
+**2. Paid is a relevancy filter, not revenue.** Levels raised Nomad List "$5, then $25, then $50, then $99" in direct response to spam. Köhlbrugge framed payment as a relevancy filter for WIP. The safer rule: charge or approve publishing once there is a reason to protect quality; do not charge before the private utility is real. *(Levels, Köhlbrugge; principle high-confidence, exact price low-confidence)*
 
-**3. Stories with stakes beat activity feeds.** A generic "what I did today" post has no visible stakes, so nobody reads it and nobody posts. Revenue transparency is what made Indie Hackers credible. Surface "what this person built with their agents this month, and what it earned" — real numbers establish identity. *(Allen)*
+**3. Stories with stakes beat activity feeds.** A generic "what I did today" post has no visible stakes, so nobody reads it and nobody posts. Revenue transparency is what made Indie Hackers credible. Surface "what this person built with their agents this month, what changed, and what proof exists" — real numbers are best, but external proof can also work. *(Allen; high-confidence principle)*
 
 **4. A time-bounded ritual is a durable mechanic.** Product Hunt's daily reset created a return habit; the 7:30am email, same time, same shape, embedded it in mornings. "By time-bounding what we're doing, we frame Product Hunt as something people set aside time to do each day." A daily/weekly "what shipped" digest competes with email, not with other feeds. *(Hoover)*
 
@@ -50,8 +49,8 @@ Here is the part worth sitting with: **there is no dedicated community yet for "
 
 So the recipe, if you wanted to build it:
 
-1. The **object** is the agent log (what ran, what shipped, what it earned), not a post.
-2. **Paid from day one** ($10-20/mo) as a quality filter.
+1. The **object** is the agent log (what ran, what shipped, what it changed), not a post.
+2. **Private utility first**, then paid/approved publishing as a quality filter.
 3. The unit people read is a **story with a number**, not a feed of activity.
 4. A **weekly "what shipped" digest** as the time-bound ritual.
 5. **Seed it by hand** with 20-30 real builders before opening.
