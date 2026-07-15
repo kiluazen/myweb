@@ -4,7 +4,7 @@ const Products = () => {
   const projects = [
     {
       name: "Nexus",
-      description: "A ChatGPT plugin for logging workouts, meals, and body weight through ordinary conversation",
+      description: "Fitness logging, inside ChatGPT.",
       link: "https://nexus.kushalsm.com"
     },
     {
