@@ -3,6 +3,16 @@ import { useState } from "react";
 const Products = () => {
   const projects = [
     {
+      name: "Nexus",
+      description: "A ChatGPT plugin for logging workouts, meals, and body weight through ordinary conversation",
+      link: "https://nexus.kushalsm.com"
+    },
+    {
+      name: "Coffeetable",
+      description: "A ChatGPT plugin that turns relevant pages across real books into one focused reading",
+      link: "https://coffeetable.kushalsm.com"
+    },
+    {
       name: <>Emergent <img src="/emergent-e.gif" alt="E" className="inline-block h-[0.8em] align-baseline mix-blend-multiply" /></>,
       description: "Vibe code production ready apps",
       stat: "150M+ ARR",
