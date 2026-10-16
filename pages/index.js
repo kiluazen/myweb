@@ -19,7 +19,8 @@ export default function Home() {
               </h1>
               <div className="text-[1.1rem]">
                 {/* <li>Building <a href="https://hyphenbox.com" className="text-[#9B9692] hover:text-[#DA95DE]">hyphenbox</a> : a “second cursor” that guides users inside SaaS apps</li> */}
-                <li>Engineer at <a href="https://app.emergent.sh/landing" className="text-[#9B9692] hover:text-[#DA95DE]">emergent</a> </li>
+                <li>Building <a href="https://nexus.kushalsm.com" className="text-[#9B9692] hover:text-[#DA95DE]">Nexus</a> : the easiest way to track calories, inside ChatGPT and Claude</li>
+                <li>Previously engineer at <a href="https://emergent.sh" className="text-[#9B9692] hover:text-[#DA95DE]">Emergent</a>, from launch to $100M ARR</li>
                 <li>Previously was building <a href="https://hyphenbox.com" className="text-[#9B9692] hover:text-[#DA95DE]">hyphenbox</a> : a “second cursor” that guides users inside SaaS apps</li>
                 <li>IIT Bombay gradudate living in Bangalore now, Let's get Coffee!</li>
                 {/* <li>Independent consultant : browser agents, memory layers, AI engineering, and more</li> */}
